@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KMC Connect — Kangaroo Mother Care</title>
+  <meta name="description" content="Kangaroo Mother Care training for healthcare providers and a multilingual guide and tracker for parents.">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/favicon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="KMC Connect">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/"><img src="icons/icon-192.png" alt=""><span id="brandTag">KMC Connect</span></a>
+    <a id="timerpill" class="timerpill" href="#/">⏱</a>
+    <select id="topLang" aria-label="Language">
+      <option value="en">EN</option><option value="ms">BM</option><option value="zh">中文</option>
+    </select>
+    <a class="iconbtn" href="#/settings" aria-label="Settings">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>
+    </a>
+  </header>
+
+  <main id="app" aria-live="polite">
+    <noscript><p>KMC Connect needs JavaScript to run.</p></noscript>
+  </main>
+
+  <nav id="bottomnav" class="bottomnav hidden" aria-label="Main"></nav>
+  <dialog id="dlg"></dialog>
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/content-parent.js"></script>
+  <script src="js/content-hcp.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

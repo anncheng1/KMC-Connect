@@ -1,0 +1,15 @@
+{
+  "name": "KMC Connect — Kangaroo Mother Care",
+  "short_name": "KMC Connect",
+  "description": "Kangaroo Mother Care training for healthcare providers and a multilingual guide and tracker for parents.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#012459",
+  "theme_color": "#0f766e",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
