@@ -289,7 +289,7 @@ const DANGER_SIGNS = [
   { e: '😴', t: { en: 'Moves less or not at all, very sleepy or floppy', ms: 'Kurang bergerak atau tidak bergerak langsung, sangat mengantuk atau lembik', zh: '动得少或完全不动、非常嗜睡或软绵绵' } },
   { e: '🫁', t: { en: 'Fast breathing (more than 60 breaths a minute) or very slow breathing', ms: 'Bernafas laju (lebih 60 kali seminit) atau sangat perlahan', zh: '呼吸急促（每分钟超过60次）或非常缓慢' } },
   { e: '⬇️', t: { en: 'Chest sucks in when breathing (chest indrawing) or grunting', ms: 'Dada tertarik ke dalam semasa bernafas atau berdengus', zh: '呼吸时胸部凹陷或发出呻吟声' } },
-  { e: '💙', t: { en: 'Stops breathing for more than 20 seconds, or turns blue or pale', ms: 'Berhenti bernafas lebih 20 saat, atau menjadi biru atau pucat', zh: '停止呼吸超过20秒，或发紫、苍白' } },
+  { e: '💙', t: { en: 'Any pause in breathing with blue or pale colour, limpness or unresponsiveness; or no breathing for 20 seconds', ms: 'Sebarang henti nafas bersama perubahan warna menjadi biru atau pucat, lembik atau tidak responsif; atau tiada pernafasan selama 20 saat', zh: '任何呼吸暂停并伴有发紫、苍白、软弱或无反应；或停止呼吸达20秒' } },
   { e: '⚡', t: { en: 'Fits, convulsions or twitching', ms: 'Sawan, kejang atau tersentak-sentak', zh: '抽搐、痉挛或抽动' } },
   { e: '🌡️', t: { en: 'Feels cold (below 36.5 °C) or hot (above 37.5 °C)', ms: 'Terasa sejuk (bawah 36.5 °C) atau panas (atas 37.5 °C)', zh: '摸起来冷（低于36.5 °C）或发热（高于37.5 °C）' } },
   { e: '🟡', t: { en: 'Yellow skin spreading to the palms and soles', ms: 'Kulit kuning merebak ke tapak tangan dan tapak kaki', zh: '皮肤发黄蔓延到手掌和脚底' } },
