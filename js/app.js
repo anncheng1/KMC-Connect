@@ -743,6 +743,40 @@ function ficareImage(id){
  const pdf=id===2;
  return '<figure class="ficare-image"><a href="'+p.src+'" target="_blank" rel="noopener">'+(pdf?'<span class="ficare-image-pdf">WHO hand hygiene poster · Open PDF ↗</span>':'<img src="'+p.src+'" alt="'+esc(p.alt)+'" loading="lazy" decoding="async">')+'</a><figcaption>'+esc(p.alt)+'<small>Image: '+esc(p.credit)+' · <a href="https://www.who.int/publications/i/item/9789240115910" target="_blank" rel="noopener">WHO KMC Clinical Practice Guide (2025)</a></small></figcaption></figure>';
 }
+/* Iban phrases below are copied from Hospital Miri Iban Medical Phrasebook V1.0.
+ * Only show phrases with a direct phrasebook match; do not infer translations for missing terms.
+ */
+const FICARE_IBAN_SUPPORT = {
+  1: [
+    ['Child','Nembiak'], ['Premature','Ada muda'],
+    ['Intensive care','Unit rawatan rapi'],
+    ['Incubator','Katil kaca- katil ti di gaga kena engkah nembiah ka ada enda cukup bulan']
+  ],
+  3: [
+    ['Breast milk','Nusu tubuh'],
+    ['Express breast milk every 2–3 hours and send','Picit tusu nuan 2-3 jam sereta alu anjung'],
+    ['Formula milk','Nusu tin']
+  ],
+  7: [
+    ['Premature','Ada muda'],
+    ['Breast milk','Nusu tubuh']
+  ],
+  8: [
+    ['Orogastric / nasogastric feeding','Makai ari idung tau mulut ngena tiup'],
+    ['Keep nil by mouth','Enda tau Makai enggau ngirup'],
+    ['Breast milk','Nusu tubuh']
+  ],
+  10: [
+    ['Your child is in critical condition','Anak nuan enda entu manah'],
+    ['Your child is in a stable condition','Anak nuan udah manah'],
+    ['Come back to the hospital immediately if condition worsens','Datai baru kesepital enti pengerai ia majak raya.']
+  ]
+};
+function ficareIbanSupport(id){
+ if(S.settings.lang!=='iba'||!FICARE_IBAN_SUPPORT[id])return '';
+ return '<div class="callout amber"><b>Iban phrasebook — verified entries</b><ul class="msgs">'+FICARE_IBAN_SUPPORT[id].map(p=>'<li><b>'+esc(p[0])+':</b> '+esc(p[1])+'</li>').join('')+'</ul><p class="small muted">'+esc(t('ibaNotice'))+'</p></div>';
+}
+
 function viewFicareLevel(id,audience){
  const x=FICARE_LEVELS.find(z=>z.id===Number(id));if(!x)return notFound();
  const hcp=audience==='hcp',r=ficareRecord(x.id),complete=!!r.achieved,previousDone=x.id===1||ficareRecord(x.id-1).achieved;
@@ -752,7 +786,7 @@ function viewFicareLevel(id,audience){
  }else{
   body='<div class="card"><h3>What you will learn</h3><p>'+esc(L(x.intro))+'</p><h3>What the nurse will teach you</h3><ul class="msgs">'+x.teach.map(v=>'<li>'+esc(v)+'</li>').join('')+'</ul><h3>How your nurse checks the skill</h3><ul class="msgs">'+x.check.map(v=>'<li>'+esc(v)+'</li>').join('')+'</ul></div><div class="callout '+(complete?'green':'amber')+'"><b>'+(complete?'⭐ Star achieved':'Your nurse will confirm this level')+'</b><p>'+(complete?'This level has been recorded as achieved.':'Practise with your nurse. A star is awarded only after every required item is confirmed.')+'</p></div>';
  }
- return backLink(hcp?'#/h/ficare':'#/p/ficare')+ficareImage(x.id)+'<div class="ficare-level-heading"><span>'+x.icon+'</span><div><small>LEVEL '+x.id+' OF 10</small><h1>'+esc(L(x.title))+'</h1><p>'+esc(L(x.skill))+'</p></div></div>'+body+(hcp&&!previousDone?'<div class="callout amber">Complete the previous level before awarding this star. You may still document this session.</div>':'')+'<div class="btnrow"><a class="btn sec" href="'+(hcp?'#/h/ficare':'#/p/ficare')+'">All 10 levels</a>'+(x.id<10?'<a class="btn" href="'+(hcp?'#/h/ficare/level/':'#/p/ficare/level/')+(x.id+1)+'">Next level →</a>':'')+'</div>';
+ return backLink(hcp?'#/h/ficare':'#/p/ficare')+ficareIbanSupport(x.id)+ficareImage(x.id)+'<div class="ficare-level-heading"><span>'+x.icon+'</span><div><small>LEVEL '+x.id+' OF 10</small><h1>'+esc(L(x.title))+'</h1><p>'+esc(L(x.skill))+'</p></div></div>'+body+(hcp&&!previousDone?'<div class="callout amber">Complete the previous level before awarding this star. You may still document this session.</div>':'')+'<div class="btnrow"><a class="btn sec" href="'+(hcp?'#/h/ficare':'#/p/ficare')+'">All 10 levels</a>'+(x.id<10?'<a class="btn" href="'+(hcp?'#/h/ficare/level/':'#/p/ficare/level/')+(x.id+1)+'">Next level →</a>':'')+'</div>';
 }
 function bindFicareAssessment(id){
  const x=FICARE_LEVELS.find(z=>z.id===Number(id)),form=$('#ficareAssessment');if(!x||!form)return;
