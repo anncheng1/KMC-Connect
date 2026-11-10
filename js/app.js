@@ -177,12 +177,6 @@ const KMC_PHOTOS = [
     alt: 'Mothers practising KMC with their newborns in a hospital mother-newborn care unit',
     title: { en: 'KMC in the hospital', ms: 'KMC di hospital', zh: '在医院进行袋鼠式护理' },
     credit: 'WHO / Blink Media – H. Abebe'
-  },
-  {
-    src: 'https://cdn.who.int/media/images/default-source/mca/2-newborn-health/kmc-practice-guide/a-father-and-his-newborn.tmb-1920v.jpg?sfvrsn=105460d1_1',
-    alt: 'Father providing skin-to-skin contact to his newborn at home',
-    title: { en: 'Family support at home', ms: 'Sokongan keluarga di rumah', zh: '家人在家中共同照护' },
-    credit: 'Fundación Canguro / Kangaroo Foundation'
   }
 ];
 function positionFigure() {
