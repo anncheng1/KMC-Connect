@@ -748,28 +748,32 @@ function ficareImage(id){
  */
 const FICARE_IBAN_SUPPORT = {
   1: [
-    ['Child','Nembiak'], ['Premature','Ada muda'],
-    ['Intensive care','Unit rawatan rapi'],
-    ['Incubator','Katil kaca- katil ti di gaga kena engkah nembiah ka ada enda cukup bulan']
+    ['Paediatrician','Lutor pakar anak mit'],
+    ['Child','Nembiak'],
+    ['Neonatology','Endur khas nyaga anak mit'],
+    ['Premature','Ada muda'],
+    ['Incubator','Katil kaca- katil ti di gaga kena engkah nembiah ka ada enda cukup bulan'],
+    ['Intensive care','Unit rawatan rapi']
   ],
   3: [
     ['Breast milk','Nusu tubuh'],
-    ['Express breast milk every 2–3 hours and send','Picit tusu nuan 2-3 jam sereta alu anjung'],
-    ['Formula milk','Nusu tin']
+    ['Express breast milk every 2–3 hours and send','Picit tusu nuan 2-3 jam sereta alu anjung']
   ],
   7: [
     ['Premature','Ada muda'],
-    ['Breast milk','Nusu tubuh']
+    ['Breast milk','Nusu tubuh'],
+    ['Your child has this problem','Anak nuan bisi penanggul tok']
   ],
   8: [
-    ['Orogastric / nasogastric feeding','Makai ari idung tau mulut ngena tiup'],
-    ['Keep nil by mouth','Enda tau Makai enggau ngirup'],
-    ['Breast milk','Nusu tubuh']
+    ['Feeding by tube through the nose or mouth','Makai ari idung tau mulut ngena tiup'],
+    ['Keep nil by mouth','Enda tau Makai enggau ngirup']
   ],
   10: [
-    ['Your child is in critical condition','Anak nuan enda entu manah'],
-    ['Your child is in a stable condition','Anak nuan udah manah'],
-    ['Come back to the hospital immediately if condition worsens','Datai baru kesepital enti pengerai ia majak raya.']
+    ['Your child has this problem','Anak nuan bisi penanggul tok'],
+    ['Come back to the hospital immediately if condition worsens','Datai baru kesepital enti pengerai ia majak raya.'],
+    ['Can be discharged','Ulih pansut sepital'],
+    ['Cannot be discharged','Enda ulih pansut sepital'],
+    ['Need to come for hospital follow-up','Deka datai beperesa baru ke sepital']
   ]
 };
 function ficareIbanSupport(id){
