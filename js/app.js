@@ -212,7 +212,7 @@ const whoLabel = w => t(w === 'other' ? 'otherFamily' : w);
 function setNav(mode) {
   const nav = $('#bottomnav'); const h = location.hash || '#/';
   let items;
-  if (mode === 'hcp') items = [['#/h', 'home', 'Home'], ['#/h/modules', 'grad', 'Modules'], ['#/h/skills', 'check', 'Skills'], ['#/h/tools', 'tool', 'Tools'], ['#/h/unit', 'users', 'Unit']];
+  if (mode === 'hcp') items = [['#/h', 'home', 'Home'], ['#/h/modules', 'grad', 'Modules'], ['#/h/skills', 'check', 'Skills'], ['#/h/tools', 'tool', 'Tools'], ['#/h/unit', 'users', 'Unit'], ['#/p', 'users', 'Parents']];
   else if (mode === 'parent') items = [['#/p', 'home', t('home')], ['#/p/learn', 'book', t('learn')], ['#/p/track', 'clock', t('track')], ['#/p/danger', 'alert', t('danger'), 'dangerlink']];
   else { nav.classList.add('hidden'); return; }
   nav.classList.remove('hidden');
