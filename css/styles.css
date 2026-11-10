@@ -192,3 +192,15 @@ button,a,select,input{touch-action:manipulation}
 .kmc-photo-card .small{font-size:.72rem;line-height:1.35}
 .kmc-photo-note{grid-column:1/-1;line-height:1.45;margin:.1rem 0}
 @media(max-width:520px){.kmc-photo-grid{grid-template-columns:1fr}.kmc-photo-card img{height:auto;max-height:360px;object-fit:cover}}
+
+
+/* Parent-facing step-by-step KMC positioning */
+.position-steps{display:grid;gap:.65rem;margin:1rem 0}
+.position-steps h2{margin:.3rem 0 .2rem}
+.position-step{display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:.7rem;align-items:start;padding:.85rem;background:var(--card,#fff);border:1px solid var(--line);border-radius:13px}
+.position-step-head{display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.position-step-number{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;font-weight:700}
+.position-step-icon{font-size:1.25rem}
+.position-step p{margin:.15rem 0;line-height:1.5}
+.position-steps+.callout ul{margin:.45rem 0 0;padding-left:1.25rem}
+.position-steps+.callout li{margin:.3rem 0}
