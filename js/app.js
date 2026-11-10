@@ -323,9 +323,28 @@ function viewLesson(id, base = '#/p/learn') {
   </div>`;
 }
 function positionBody() {
-  return `${POSITION_STEPS.map((s, i) => `<div class="step"><div class="num">${i + 1}</div><div class="em">${s.e}</div><div>${esc(L(s.t))}</div></div>`).join('')}
-  <div class="callout green">💋 ${esc(t('checkPosition'))}</div>
-  <div class="callout amber">🏥 ${esc(t('sickBabyNote'))}</div>`;
+  const guidePdf = 'https://cdn.who.int/media/docs/default-source/newborn-health/kangaroo_mother_care_a_clinical_practice_guide.pdf#page=61';
+  const video = VIDEOS.find(x => x.n === 7);
+  const steps = POSITION_STEPS.map((s, i) => `<article class="position-step">
+    <div class="position-step-head"><span class="position-step-number">${i + 1}</span><span class="position-step-icon" aria-hidden="true">${s.e}</span></div>
+    <p>${esc(L(s.t))}</p>
+  </article>`).join('');
+  return `<section class="position-steps" aria-label="Step-by-step KMC positioning">
+    <h2>${esc(L({en:'Step-by-step: placing your baby in KMC',ms:'Langkah demi langkah: meletakkan bayi dalam posisi KMC',zh:'逐步学习：将宝宝放入袋鼠式护理姿势'}))}</h2>
+    ${steps}
+  </section>
+  <div class="callout green"><b>${esc(L({en:'Before you finish, check:',ms:'Sebelum selesai, periksa:',zh:'完成前请检查：'}))}</b><ul>
+    <li>${esc(L({en:'Baby’s face is visible; nose and mouth are not covered.',ms:'Wajah bayi kelihatan; hidung dan mulut tidak tertutup.',zh:'宝宝的脸清晰可见；鼻子和嘴巴没有被遮挡。'}))}</li>
+    <li>${esc(L({en:'Head is turned to one side and neck is slightly extended — never chin-to-chest.',ms:'Kepala dipaling ke satu sisi dan leher sedikit diluruskan — dagu tidak menekan dada.',zh:'头转向一侧，颈部稍微伸展——不要让下巴贴近胸口。'}))}</li>
+    <li>${esc(L({en:'Binder is secure but does not restrict chest or abdominal movement.',ms:'Kain pengikat kemas tetapi tidak menyekat pergerakan dada atau perut.',zh:'背带稳固，但不能限制胸部或腹部活动。'}))}</li>
+  </ul></div>
+  <div class="callout amber"><b>${esc(L({en:'Important safety note',ms:'Peringatan keselamatan penting',zh:'重要安全提示'}))}</b><p>${esc(t('sickBabyNote'))}</p><p>${esc(L({en:'For a very small or sick baby, or a baby receiving CPAP, oxygen or other support, the transfer must be planned and performed with the clinical team. Do not attempt to reposition the baby alone.',ms:'Bagi bayi yang sangat kecil atau sakit, atau bayi yang menerima CPAP, oksigen atau sokongan lain, pemindahan mesti dirancang dan dilakukan bersama pasukan klinikal. Jangan cuba mengubah posisi bayi seorang diri.',zh:'对于极小或患病的宝宝，或正在接受 CPAP、氧气或其他支持的宝宝，必须与临床团队共同计划并完成转移。请勿独自尝试重新摆放宝宝。'}))}</p></div>
+  <div class="card">
+    <h3>${esc(L({en:'Watch the WHO demonstration',ms:'Tonton demonstrasi WHO',zh:'观看 WHO 示范视频'}))}</h3>
+    <p class="small muted">${esc(L({en:'Video 7 demonstrates placing a stable newborn in the KMC position. The WHO guide also contains a photographic sequence showing preparation, transfer, positioning and binder placement.',ms:'Video 7 menunjukkan cara meletakkan bayi stabil dalam posisi KMC. Panduan WHO turut mengandungi siri foto tentang persediaan, pemindahan, posisi dan pemasangan kain pengikat.',zh:'视频 7 示范如何将情况稳定的新生儿放入袋鼠式护理姿势。WHO 指南也包含准备、转移、摆位及固定背带的连续照片。'}))}</p>
+    <a class="btn sec block" href="${video.url}" target="_blank" rel="noopener">▶ ${esc(L(video.title))}</a>
+    <a class="btn ghost block" href="${guidePdf}" target="_blank" rel="noopener">${esc(L({en:'Open WHO photographic sequence (guide pages 49–54)',ms:'Buka siri foto WHO (halaman panduan 49–54)',zh:'打开 WHO 连续照片（指南第49–54页）'}))} ↗</a>
+  </div>`;
 }
 function viewPosition(base = '#/p') {
   const v = VIDEOS.find(x => x.n === 7), v2 = VIDEOS.find(x => x.n === 2);
