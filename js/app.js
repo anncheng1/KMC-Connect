@@ -5,7 +5,7 @@
 
 /* ---------- storage ---------- */
 const KEY = 'kmcconnect.v1';
-const APP_VERSION = '1.0.0';
+const APP_VERSION = '1.1.0';
 function defaults() {
   return {
     settings: { lang: 'en', mode: null, emergency: (window.CONFIG && CONFIG.emergency) || '999',
@@ -997,6 +997,7 @@ function viewSettings() {
   const st = S.settings;
   return `${backLink(st.mode === 'hcp' ? '#/h' : st.mode === 'parent' ? '#/p' : '#/')}<h1>${esc(t('settings'))}</h1>
   <div class="card"><label for="setLang">${esc(t('language'))}</label>${langSelect('setLang')}
+    ${S.settings.lang === 'iba' ? '<p class="small muted">' + esc(t('ibaNotice')) + '</p>' : ''}
     <label>${esc(t('emergencyNo'))}</label><input type="tel" id="setEm" value="${esc(st.emergency)}">
     <label>${esc(t('hospitalName'))}</label><input type="text" id="setHn" value="${esc(st.hospitalName)}">
     <label>${esc(t('hospitalPhone'))}</label><input type="tel" id="setHp" value="${esc(st.hospitalPhone)}">
