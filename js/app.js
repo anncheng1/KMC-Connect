@@ -309,7 +309,7 @@ function viewParentHome() {
   const features = [
     {href:'#/p/learn',img:KMC_PHOTOS[2],alt:KMC_PHOTOS[2].alt,title:t('learn'),sub:t('learnSub'),tag:{en:'START HERE',ms:'MULA DI SINI',zh:'从这里开始'}},
     {href:'#/p/position',img:KMC_PHOTOS[0],alt:KMC_PHOTOS[0].alt,title:t('howToHold'),sub:t('howToHoldSub'),tag:{en:'PRACTICAL GUIDE',ms:'PANDUAN PRAKTIKAL',zh:'实用指南'}},
-    {href:'#/p/track',img:KMC_PHOTOS[1],alt:KMC_PHOTOS[1].alt,title:t('tracker'),sub:t('trackSub'),tag:{en:'DAILY TRACKER',ms:'PENJEJAK HARIAN',zh:'每日记录'}},
+    {href:'#/p/track',img:KMC_PHOTOS[0],alt:KMC_PHOTOS[0].alt,title:t('tracker'),sub:t('trackSub'),tag:{en:'DAILY TRACKER',ms:'PENJEJAK HARIAN',zh:'每日记录'}},
   ];
   const featureHtml = features.map(x => `<a class="home-feature" href="${x.href}"><img src="${x.img.src}" alt="${esc(x.alt)}" loading="lazy"><span class="home-feature-copy"><span class="eyebrow">${esc(L(x.tag))}</span><b>${esc(x.title)}</b><span>${esc(x.sub)}</span></span><span class="card-arrow">›</span></a>`).join('');
   return `<section class="parent-welcome">
