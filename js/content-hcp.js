@@ -193,7 +193,7 @@ const MODULES = [
         'Periodic breathing (fast breaths alternating with brief pauses) is normal in preterm newborns and needs no treatment.',
         'Apnoea: cessation of breathing ≥20 s, or shorter with bradycardia (<100/min), pallor, cyanosis or SpO2 <85%. Monitor all newborns <35 weeks during the first week.',
         'Immediate actions: correct neck position, suction if secretions, tactile stimulation, oxygen if hypoxic, PPV if no response. Then find and treat the cause; caffeine for apnoea of prematurity.',
-        'Teach families (Box 8): normal SpO2 90–95%; breath-hold demonstration of 20 s; rub back, limbs and soles; call for help immediately.'] },
+        'Teach families: any abnormal breathing, colour change, limpness or unresponsiveness requires immediate help — do not wait 20 seconds. Explain the prescribed SpO2 target for that individual newborn; 90–95% is not a universal target. Parents must not adjust oxygen or make treatment decisions from an oximeter reading.'] },
       { h: 'Danger signs to teach parents', b: [
         'Stops feeding well; no spontaneous movement; fast or very slow breathing; chest indrawing; convulsions or twitching; cold or hot to touch; any monitor alarm.',
         'Onset of serious illness in small newborns is subtle — respond promptly to a mother’s concern.'] }
@@ -203,7 +203,7 @@ const MODULES = [
       { q: 'Apnoea in a preterm newborn is defined as cessation of breathing for:', o: ['≥10 seconds', '≥20 seconds, or shorter with bradycardia, cyanosis, pallor or SpO2 <85%', 'Any irregular breathing', 'RR below 40/min'], a: 1, x: 'Periodic breathing with brief pauses is normal.' },
       { q: 'Axillary temperature is 36.2 °C during KMC. First actions?', o: ['Move immediately to an incubator', 'Remove wet clothes, cap, extra blankets, warm the room, minimise interruptions, recheck in 1 hour', 'Start antibiotics', 'Give a warm bath'], a: 1, x: 'Box 7 steps first; alternative warming only if hypothermia persists.' },
       { q: 'Periodic breathing in a preterm newborn:', o: ['Needs caffeine', 'Is normal and needs no treatment', 'Is a sign of sepsis', 'Is an indication for intubation'], a: 1, x: 'It reflects immature respiratory control.' },
-      { q: 'Which SpO2 range do you teach parents as normal?', o: ['80–85%', '85–89%', '90–95%', '98–100%'], a: 2, x: 'Box 8: explain the normal range 90–95%.' },
+      { q: 'What should parents be taught about SpO2 targets?', o: ['Every newborn must be 90–95%', 'Every newborn must be 98–100%', 'Follow the individual newborn’s prescribed target and call staff about alarms', 'Parents should adjust oxygen flow to reach 100%'], a: 2, x: 'Explain the prescribed target for the individual newborn; do not present one range as universal.' },
       { q: 'With a mercury thermometer, keep it in the axilla for at least:', o: ['30 seconds', '1 minute', '3 minutes', '10 minutes'], a: 2, x: 'At least 3 minutes (digital: until it beeps).' }
     ]
   },

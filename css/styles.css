@@ -175,3 +175,9 @@ dialog h2{margin-top:0}
   .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid}
 }
 td:first-child{white-space:nowrap}
+
+/* Accessibility and touch refinements for KMC Connect 2.0 */
+:focus-visible{outline:3px solid #f59e0b!important;outline-offset:3px}
+button,a,select,input{touch-action:manipulation}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media(max-width:380px){main{padding-left:.7rem;padding-right:.7rem}.card{padding:.85rem}.grid{gap:.55rem}.tile{padding:.8rem;min-height:108px}.timer .clock{font-size:2.5rem}}
