@@ -214,3 +214,12 @@ button,a,select,input{touch-action:manipulation}
 .kmc-learning-copy p{margin:.4rem 0 .7rem}
 .kmc-learning-copy .btnrow{margin-top:.8rem;flex-wrap:wrap}
 @media(min-width:680px){.kmc-learning-card{grid-template-columns:minmax(210px,36%) 1fr}.kmc-learning-card>img{height:100%;min-height:250px}}
+
+/* Father and family KMC guide */
+.family-guide-section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem;margin:1rem 0}
+.family-guide-section h2{font-size:1.12rem;margin:0 0 .65rem}
+.family-guide-section ul{padding-left:1.25rem;margin:.2rem 0}
+.family-guide-section li{margin:.55rem 0;line-height:1.5}
+.family-guide-photo{margin:1rem 0}
+.family-guide-photo img{width:100%;max-height:360px;object-fit:cover;border-radius:14px}
+.family-guide-photo figcaption{font-size:.78rem;color:var(--muted);margin-top:.3rem}
