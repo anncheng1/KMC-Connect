@@ -161,32 +161,42 @@ function lineChart(pts) {
  */
 const KMC_PHOTOS = [
   {
-    src: 'https://cdn.who.int/media/images/default-source/mca/2-newborn-health/kmc-practice-guide/proud-parents-welcome-their-newborn.tmb-1920v.jpg?sfvrsn=7016155b_1',
-    alt: 'Mother providing immediate KMC to her preterm newborn receiving CPAP, with the father beside her',
-    title: { en: 'Holding your baby close', ms: 'Mendakap bayi dengan rapat', zh: '让宝宝贴近您的胸前' },
-    credit: 'General TWG Long An Hospital / KC. Luong'
+    src: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/MotherKMC.jpg',
+    alt: 'Mother providing kangaroo mother care to a preterm baby',
+    title: { en: 'Mother and baby practising KMC', ms: 'Ibu dan bayi melakukan KMC', zh: '妈妈与宝宝进行袋鼠式护理' },
+    credit: 'Sathishsugavanam27',
+    source: 'https://commons.wikimedia.org/wiki/File:MotherKMC.jpg',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/'
   },
   {
-    src: 'https://cdn.who.int/media/images/default-source/mca/2-newborn-health/kmc-practice-guide/a-mother-breastfeeds-her-newborn.tmb-1920v.jpg?sfvrsn=fefbddea_1',
-    alt: 'Mother breastfeeding her newborn while the baby is positioned upright against her chest',
-    title: { en: 'Breastfeeding in the KMC position', ms: 'Penyusuan dalam posisi KMC', zh: '袋鼠式护理姿势下哺乳' },
-    credit: 'General TWG Long An Hospital / KC. Luong'
+    src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mother_breastfeeding.jpg',
+    alt: 'Mother breastfeeding her baby',
+    title: { en: 'Breastfeeding your baby', ms: 'Menyusukan bayi anda', zh: '给宝宝喂母乳' },
+    credit: 'Tinahtinah',
+    source: 'https://commons.wikimedia.org/wiki/File:Mother_breastfeeding.jpg',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/'
   },
   {
-    src: 'https://cdn.who.int/media/images/default-source/mca/2-newborn-health/kmc-practice-guide/new-mothers-with-their-infants.tmb-1920v.jpg?sfvrsn=4565c0c4_1',
-    alt: 'Mothers practising KMC with their newborns in a hospital mother-newborn care unit',
-    title: { en: 'KMC in the hospital', ms: 'KMC di hospital', zh: '在医院进行袋鼠式护理' },
-    credit: 'WHO / Blink Media – H. Abebe'
+    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kangaroo_Care_Laquintinie_Hospital_Cameroon.jpg/1280px-Kangaroo_Care_Laquintinie_Hospital_Cameroon.jpg',
+    alt: 'Mother providing kangaroo care to her newborn in a hospital in Cameroon',
+    title: { en: 'KMC in a hospital setting', ms: 'KMC di persekitaran hospital', zh: '在医院进行袋鼠式护理' },
+    credit: 'Happi Raphael',
+    source: 'https://commons.wikimedia.org/wiki/File:Kangaroo_Care_Laquintinie_Hospital_Cameroon.jpg',
+    license: 'https://creativecommons.org/licenses/by-sa/4.0/'
   }
 ];
+function photoCredit(p) {
+  return '<a href="' + p.source + '" target="_blank" rel="noopener">' + esc(p.credit) + '</a> · <a href="' + p.license + '" target="_blank" rel="noopener">CC BY-SA 4.0</a>';
+}
+
 function positionFigure() {
   const guide = 'https://www.who.int/teams/maternal-newborn-child-adolescent-health-and-ageing/newborn-health/kangaroo-mother-care-practice-guide';
   return `<div class="kmc-photo-grid" aria-label="Real-life KMC photographs from the WHO clinical practice guide">
     ${KMC_PHOTOS.map(p => `<figure class="kmc-photo-card">
       <img src="${p.src}" alt="${esc(p.alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-      <figcaption><b>${esc(L(p.title))}</b><span class="small muted">Photo: ${esc(p.credit)}</span></figcaption>
+      <figcaption><b>${esc(L(p.title))}</b><span class="small muted">Photo: ${photoCredit(p)}</span></figcaption>
     </figure>`).join('')}
-    <p class="small muted kmc-photo-note">Photographs are credited to their respective contributors and reproduced from the WHO 2025 KMC guide webpage. Please consult the WHO guide for the complete instructions on safe positioning. <a href="${guide}" target="_blank" rel="noopener">Open WHO guide ↗</a></p>
+    <p class="small muted kmc-photo-note">Photographs are shared under CC BY-SA 4.0. Please consult the WHO guide for the complete instructions on safe positioning. <a href="${guide}" target="_blank" rel="noopener">Open WHO guide ↗</a></p>
   </div>`;
 }
 
@@ -352,7 +362,7 @@ function viewLesson(id, base = '#/p/learn') {
   const messages = L(l.msgs) || [];
   const done = LESSONS.filter(x => S.parentRead[x.id]).length;
   const pct = Math.round(done / LESSONS.length * 100);
-  const photoBlock = `<figure class="lesson-photo lesson-photo-hero"><img src="${photo.src}" alt="${esc(photo.alt)}" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption><b>${esc(L(photo.title))}</b><span>Photo: ${esc(photo.credit)}</span></figcaption></figure>`;
+  const photoBlock = `<figure class="lesson-photo lesson-photo-hero"><img src="${photo.src}" alt="${esc(photo.alt)}" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption><b>${esc(L(photo.title))}</b><span>Photo: ${photoCredit(photo)}</span></figcaption></figure>`;
   const body = l.steps ? positionBody() : `<section class="lesson-message-section" aria-label="Lesson key messages">
     <div class="lesson-section-heading"><span>${esc(L({en:'Key things to remember',ms:'Perkara penting untuk diingati',zh:'重点提示'}))}</span><small>${messages.length} ${esc(L({en:'points',ms:'perkara',zh:'个要点'}))}</small></div>
     <div class="lesson-message-list">${messages.map((m,i) => `<article class="lesson-message"><span class="lesson-message-number">${String(i+1).padStart(2,'0')}</span><p>${esc(m)}</p></article>`).join('')}</div>
@@ -420,7 +430,7 @@ function viewParentGallery() {
   ];
   const cards = items.map(function(x) {
     const v = VIDEOS.find(function(y) { return y.n === x.video; });
-    return '<article class="kmc-learning-card"><img src="' + x.image.src + '" alt="' + esc(x.image.alt) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="kmc-learning-copy"><div class="small muted">' + x.icon + ' ' + esc(L({en:'PARENT GUIDE',ms:'PANDUAN IBU BAPA',zh:'家长指南'})) + '</div><h2>' + esc(L(x.title)) + '</h2><p>' + esc(L(x.desc)) + '</p><p class="small muted">Photo: ' + esc(x.image.credit) + '</p><div class="btnrow"><a class="btn sec" href="#/p/learn/' + x.lesson + '">' + esc(L({en:'Read lesson',ms:'Baca pelajaran',zh:'阅读课程'})) + ' →</a>' + (x.family ? '<a class="btn sec" href="#/p/family">' + esc(L({en:'Family guide',ms:'Panduan keluarga',zh:'家庭指南'})) + ' →</a>' : '') + '<a class="btn ghost" href="' + v.url + '" target="_blank" rel="noopener">▶ ' + esc(L({en:'Watch video',ms:'Tonton video',zh:'观看视频'})) + '</a></div></div></article>';
+    return '<article class="kmc-learning-card"><img src="' + x.image.src + '" alt="' + esc(x.image.alt) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="kmc-learning-copy"><div class="small muted">' + x.icon + ' ' + esc(L({en:'PARENT GUIDE',ms:'PANDUAN IBU BAPA',zh:'家长指南'})) + '</div><h2>' + esc(L(x.title)) + '</h2><p>' + esc(L(x.desc)) + '</p><p class="small muted">Photo: ' + photoCredit(x.image) + '</p><div class="btnrow"><a class="btn sec" href="#/p/learn/' + x.lesson + '">' + esc(L({en:'Read lesson',ms:'Baca pelajaran',zh:'阅读课程'})) + ' →</a>' + (x.family ? '<a class="btn sec" href="#/p/family">' + esc(L({en:'Family guide',ms:'Panduan keluarga',zh:'家庭指南'})) + ' →</a>' : '') + '<a class="btn ghost" href="' + v.url + '" target="_blank" rel="noopener">▶ ' + esc(L({en:'Watch video',ms:'Tonton video',zh:'观看视频'})) + '</a></div></div></article>';
   }).join('');
   return backLink('#/p') + '<h1>' + esc(L({en:'KMC Parent Learning Gallery',ms:'Galeri Pembelajaran KMC untuk Ibu Bapa',zh:'袋鼠式护理家长学习图集'})) + '</h1><p class="muted">' + esc(L({en:'Explore practical topics with real-life photographs, short guidance and links to parent lessons.',ms:'Terokai topik praktikal melalui foto sebenar, panduan ringkas dan pautan ke pelajaran untuk ibu bapa.',zh:'通过真实照片、简明指导和家长课程链接，了解实用主题。'})) + '</p><div class="kmc-learning-gallery">' + cards + '</div><div class="callout amber"><b>' + esc(L({en:'Every baby is different',ms:'Setiap bayi berbeza',zh:'每个宝宝都不同'})) + '</b><p>' + esc(L({en:'Follow your baby’s individual care plan. If your baby is very small, unwell, or receiving oxygen, CPAP or other support, ask the clinical team before changing position or providing KMC.',ms:'Ikuti pelan penjagaan khusus bayi anda. Jika bayi sangat kecil, tidak sihat atau menerima oksigen, CPAP atau sokongan lain, rujuk pasukan klinikal sebelum mengubah posisi atau melakukan KMC.',zh:'请遵循宝宝的个别护理计划。如果宝宝非常小、身体不适，或正在接受氧气、CPAP或其他支持，在改变姿势或进行袋鼠式护理前请先咨询临床团队。'})) + '</p></div><p class="small muted">' + esc(L({en:'Photographs are credited to their contributors. Third-party image permissions should be confirmed before redistribution.',ms:'Foto dikreditkan kepada penyumbangnya. Kebenaran penggunaan foto pihak ketiga perlu disahkan sebelum pengedaran semula.',zh:'照片已注明提供者。再次传播前应确认第三方图片的使用许可。'})) + '</p>';
 }
