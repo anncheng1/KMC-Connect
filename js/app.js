@@ -11,7 +11,7 @@ function defaults() {
     settings: { lang: 'en', mode: null, emergency: (window.CONFIG && CONFIG.emergency) || '999',
       hospitalName: (window.CONFIG && CONFIG.hospitalName) || '', hospitalPhone: (window.CONFIG && CONFIG.hospitalPhone) || '' },
     babies: [], activeBaby: null, sessions: [], feeds: [], weights: [], temps: [], timers: {},
-    learner: null, quiz: {}, read: {}, skills: {}
+    learner: null, quiz: {}, read: {}, parentRead: {}, skills: {}
   };
 }
 function load() {
@@ -212,7 +212,7 @@ const whoLabel = w => t(w === 'other' ? 'otherFamily' : w);
 function setNav(mode) {
   const nav = $('#bottomnav'); const h = location.hash || '#/';
   let items;
-  if (mode === 'hcp') items = [['#/h', 'home', 'Home'], ['#/h/modules', 'grad', 'Modules'], ['#/h/skills', 'check', 'Skills'], ['#/h/tools', 'tool', 'Tools'], ['#/h/unit', 'users', 'Unit']];
+  if (mode === 'hcp') items = [['#/h', 'home', 'Home'], ['#/h/modules', 'grad', 'Modules'], ['#/h/skills', 'check', 'Skills'], ['#/h/tools', 'tool', 'Tools'], ['#/h/unit', 'users', 'Unit'], ['#/p', 'users', 'Parents']];
   else if (mode === 'parent') items = [['#/p', 'home', t('home')], ['#/p/learn', 'book', t('learn')], ['#/p/track', 'clock', t('track')], ['#/p/danger', 'alert', t('danger'), 'dangerlink']];
   else { nav.classList.add('hidden'); return; }
   nav.classList.remove('hidden');
@@ -274,8 +274,15 @@ function viewParentHome() {
       ${ringSvg(today)}<div><b>${esc(b.name)}</b><div class="small muted">${esc(t('correctedAge'))}: ${esc(fmtGA(cgaDays(b)))}</div>
       <div class="small">${today >= 8 ? '✅ ' + esc(t('goalMet')) : esc(t('goalNotMet'))}</div></div></a>`;
   }
+  S.parentRead = S.parentRead || {};
+  const completed = LESSONS.filter(l => S.parentRead[l.id]).length;
+  const nextLesson = LESSONS.find(l => !S.parentRead[l.id]) || LESSONS[0];
+  const progress = Math.round(completed / LESSONS.length * 100);
+  const progressCard = `<div class="card"><div style="display:flex;justify-content:space-between;gap:.8rem;align-items:center"><div><b>${esc(L({en:'Your KMC learning journey',ms:'Perjalanan pembelajaran KMC anda',zh:'您的袋鼠护理学习进度'}))}</b><div class="small muted">${completed}/${LESSONS.length} ${esc(L({en:'lessons opened',ms:'pelajaran dibuka',zh:'个课程已打开'}))}</div></div><b>${progress}%</b></div><div class="progress" role="progressbar" aria-label="${esc(L({en:'Lesson progress',ms:'Kemajuan pelajaran',zh:'课程进度'}))}" aria-valuenow="${completed}" aria-valuemin="0" aria-valuemax="${LESSONS.length}"><i style="width:${progress}%"></i></div><a class="btn sec block" href="#/p/learn/${nextLesson.id}">${completed === LESSONS.length ? esc(L({en:'Review lessons again',ms:'Ulang kaji pelajaran',zh:'重新复习课程'})) : esc(L({en:'Continue learning',ms:'Teruskan pembelajaran',zh:'继续学习'}))} → ${esc(L(nextLesson.title))}</a></div>`;
   return `<div class="hero"><img src="icons/icon-192.png" alt="KMC Connect logo" style="width:84px;height:84px;border-radius:20px;float:right;margin-left:.8rem"><h1>KMC Connect</h1><p>${esc(t('appTagline'))}</p></div>
   ${status}
+  ${progressCard}
+  <div class="card flat"><b>${esc(L({en:'KMC position: remember these 3 checks',ms:'Posisi KMC: ingat 3 perkara ini',zh:'袋鼠护理姿势：记住这3点'}))}</b><div class="grid g3" style="margin-top:.7rem"><div class="center"><div style="font-size:2rem">👃</div><b class="small">${esc(L({en:'Airway clear',ms:'Saluran nafas terbuka',zh:'呼吸道通畅'}))}</b></div><div class="center"><div style="font-size:2rem">🤱</div><b class="small">${esc(L({en:'Chest-to-chest',ms:'Dada ke dada',zh:'胸贴胸'}))}</b></div><div class="center"><div style="font-size:2rem">🎀</div><b class="small">${esc(L({en:'Binder secure',ms:'Pengikat kemas',zh:'背带稳固'}))}</b></div></div><a class="small" href="#/p/position">${esc(L({en:'See the illustrated positioning guide',ms:'Lihat panduan posisi bergambar',zh:'查看图解姿势指南'}))} →</a></div>
   <div class="grid">
     <a class="tile teal" href="#/p/learn"><span class="em">📖</span><b>${esc(t('learn'))}</b><span>${esc(t('learnSub'))}</span></a>
     <a class="tile teal" href="#/p/position"><span class="em">🫶</span><b>${esc(t('howToHold'))}</b><span>${esc(t('howToHoldSub'))}</span></a>
@@ -296,6 +303,8 @@ function viewLessons(base = '#/p/learn') {
 function viewLesson(id, base = '#/p/learn') {
   if (id === 'danger') return viewDanger(base);
   const l = LESSONS.find(x => String(x.id) === String(id)); if (!l) return notFound();
+  S.parentRead = S.parentRead || {};
+  if (!S.parentRead[l.id]) { S.parentRead[l.id] = Date.now(); save(); }
   const prev = LESSONS.find(x => x.id === l.id - 1), next = LESSONS.find(x => x.id === l.id + 1);
   const v = l.video ? VIDEOS.find(x => x.n === l.video) : null;
   const body = l.steps ? positionBody() : `<div class="card"><h3>${esc(t('keyMessages'))}</h3><ul class="msgs">${L(l.msgs).map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>`;
@@ -592,7 +601,9 @@ function viewHcpHome() {
     <a class="tile" href="#/h/cert"><span class="em">🏅</span><b>Certificate</b><span>Print when complete</span></a>
     <a class="tile" href="#/settings"><span class="em">⚙️</span><b>Settings</b><span>Backup, language</span></a>
     <a class="tile" href="#/about"><span class="em">ℹ️</span><b>About & sources</b><span>Licence, disclaimer</span></a>
-  </div>`;
+    <a class="tile teal" href="#/p" aria-label="Open parent and family section"><span class="em">🤱</span><b>Parent & family section</b><span>Open parent home, education lessons, KMC tracker and danger signs</span></a>
+  </div>
+  <div class="card flat"><b>Switch to parent view</b><p class="small muted">You can move between healthcare-provider training and the parent-facing section at any time. Your learning progress and parent records remain saved on this device.</p><a class="btn sec block" href="#/p">Open parent section →</a></div>`;
 }
 function viewModules() {
   return `${backLink('#/h')}<h1>Training modules</h1><p class="small muted">Read each module, watch the linked WHO videos, then pass the quiz (≥${PASS_MARK}%).</p>
