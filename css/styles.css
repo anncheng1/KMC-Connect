@@ -410,3 +410,22 @@ main{max-width:760px;padding:1rem .9rem 7rem}
 .lesson-return-link a{color:var(--muted);text-decoration:none}
 @media(min-width:620px){.lesson-list-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson-list-card{min-height:86px}}
 @media(max-width:390px){.lesson-video-card{grid-template-columns:34px minmax(0,1fr)}.lesson-video-card .btn{grid-column:1/-1;width:100%}.lesson-library-heading{padding:.85rem}}
+
+/* FiCare Star Card programme */
+.ficare-hero{background:linear-gradient(135deg,#4c2a78,#7652a5);color:#fff;border-radius:18px;padding:1.25rem;margin-bottom:1rem}
+.ficare-hero h1{font-size:1.65rem;margin:.35rem 0}.ficare-hero p{margin:.25rem 0 .9rem;opacity:.95}
+.ficare-progress{display:grid;grid-template-columns:1fr auto;gap:.25rem .75rem;align-items:center;margin-top:1rem}
+.ficare-progress .progress{grid-column:1/-1;background:rgba(255,255,255,.25)}.ficare-progress .progress i{background:#f9d76e}
+.ficare-level-list{display:grid;gap:.65rem;margin:1rem 0}
+.ficare-level-card{display:flex;align-items:center;gap:.8rem;background:#fff;border:1px solid var(--line);border-radius:14px;padding:.8rem;text-decoration:none;color:var(--ink);box-shadow:var(--shadow)}
+.ficare-level-card.is-done{border-color:#e9c85b;background:#fffdf4}
+.ficare-level-star{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#f3eef9;font-size:1.5rem;flex:none}
+.ficare-level-card.is-done .ficare-level-star{background:#fff0b8}
+.ficare-level-copy{flex:1;min-width:0;display:grid;gap:2px}.ficare-level-copy small,.ficare-level-heading small{font-size:.7rem;font-weight:800;letter-spacing:.08em;color:#7652a5}
+.ficare-level-copy b{font-size:.98rem}.ficare-level-copy span{font-size:.8rem;color:var(--muted)}
+.ficare-level-status{font-size:1.35rem;color:var(--teal);font-weight:800}
+.ficare-level-heading{display:flex;gap:.9rem;align-items:center;margin:.5rem 0 1rem}
+.ficare-level-heading>span{font-size:2.4rem;background:#f3eef9;border-radius:16px;padding:.65rem}
+.ficare-level-heading h1{margin:.15rem 0;font-size:1.35rem}.ficare-level-heading p{margin:0;color:var(--muted);font-size:.9rem}
+#ficareAssessment .check{display:flex;gap:.65rem;align-items:flex-start;padding:.65rem 0;border-bottom:1px solid var(--line)}
+#ficareAssessment .check input{margin-top:.3rem;flex:none}
