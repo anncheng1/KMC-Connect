@@ -370,3 +370,43 @@ main{max-width:760px;padding:1rem .9rem 7rem}
 .position-video-card{margin:1rem 0}
 .position-credit{line-height:1.45;margin:.7rem .1rem}
 @media(max-width:390px){.position-intro{grid-template-columns:minmax(0,1fr) 92px;gap:.6rem;padding:.75rem}.position-intro img{width:92px;height:110px}.position-step{padding:.75rem}}
+
+
+/* Parent learning pathway — clearer lesson library and focused lesson screens */
+.lesson-library-heading{background:#fff;border:1px solid var(--line);border-radius:19px;padding:1rem;margin:.4rem 0 1rem}
+.lesson-library-heading .eyebrow{color:var(--teal-d);margin:0}
+.lesson-library-heading h1{font-size:1.45rem;margin:.2rem 0}
+.lesson-library-heading>p{font-size:.86rem;color:var(--muted);margin:.25rem 0 .9rem;max-width:38rem}
+.lesson-library-progress{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:var(--muted);margin-bottom:.35rem}
+.lesson-library-progress b{font-size:.9rem;color:var(--teal-d)}
+.lesson-library-heading .progress{height:7px}
+.lesson-list-grid{display:grid;grid-template-columns:1fr;gap:.55rem}
+.lesson-list-card{display:grid;grid-template-columns:48px minmax(0,1fr) 24px;gap:.75rem;align-items:center;padding:.8rem;background:#fff;border:1px solid var(--line);border-radius:15px;text-decoration:none;color:var(--ink);min-width:0;transition:border-color .15s,transform .15s}
+.lesson-list-card:active{transform:scale(.99)}
+.lesson-list-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;background:var(--teal-xl);font-size:1.45rem}
+.lesson-list-copy{display:flex;flex-direction:column;min-width:0}
+.lesson-list-copy small{font-size:.66rem;color:var(--teal-d);font-weight:800;letter-spacing:.04em}
+.lesson-list-copy b{font-size:.92rem;line-height:1.28;margin:.08rem 0}
+.lesson-list-copy>span{font-size:.72rem;color:var(--muted)}
+.lesson-list-arrow{font-size:1.25rem;color:#82918e;text-align:center}
+.lesson-list-card.is-done .lesson-list-arrow{font-size:.9rem;color:var(--teal-d);font-weight:900}
+.lesson-list-card.is-done .lesson-list-icon{background:#eaf5ef}
+.lesson-danger-link{display:grid;grid-template-columns:38px minmax(0,1fr) 18px;gap:.7rem;align-items:center;padding:.8rem;margin:1rem 0;background:#fff6f5;border:1px solid #f0d5d1;border-radius:15px;color:#8c2d27;text-decoration:none}
+.lesson-danger-link>span:first-child{width:36px;height:36px;display:grid;place-items:center;background:#b9342d;color:#fff;border-radius:50%;font-size:1.2rem;font-weight:900}
+.lesson-danger-link>span:nth-child(2){display:flex;flex-direction:column;min-width:0}
+.lesson-danger-link small{font-size:.74rem;color:#805c59}
+.lesson-photo-hero img{height:clamp(220px,62vw,360px);object-position:center 42%}
+.lesson-photo-hero figcaption b{display:block;font-size:.88rem}
+.lesson-message-section{margin:1.2rem 0}
+.lesson-section-heading>span{font-size:1.08rem}
+.lesson-message-list{gap:.65rem}
+.lesson-message{grid-template-columns:32px minmax(0,1fr);padding:.9rem;border-radius:14px;box-shadow:0 1px 5px rgba(20,55,50,.025)}
+.lesson-message-number{width:28px;height:28px;border-radius:50%;font-size:.72rem}
+.lesson-message p{font-size:.91rem;line-height:1.55}
+.lesson-video-card{display:grid;grid-template-columns:38px minmax(0,1fr) auto;align-items:center;gap:.7rem}
+.lesson-video-mark{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--teal);color:#fff;font-size:.85rem}
+.lesson-video-card .btn{font-size:.8rem;padding:.55rem .7rem}
+.lesson-return-link{text-align:center;font-size:.8rem;margin:1rem 0 2rem}
+.lesson-return-link a{color:var(--muted);text-decoration:none}
+@media(min-width:620px){.lesson-list-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson-list-card{min-height:86px}}
+@media(max-width:390px){.lesson-video-card{grid-template-columns:34px minmax(0,1fr)}.lesson-video-card .btn{grid-column:1/-1;width:100%}.lesson-library-heading{padding:.85rem}}
