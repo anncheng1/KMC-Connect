@@ -1,5 +1,5 @@
 /* KMC Connect service worker — offline support. Bump VERSION when you change any file. */
-const VERSION = 'kmc-connect-v2.0.9';
+const VERSION = 'kmc-connect-v2.1.0';
 const ASSETS = [
   './', './index.html', './manifest.webmanifest', './css/styles.css',
   './js/config.js', './js/i18n.js', './js/content-parent.js', './js/content-hcp.js', './js/app.js',
