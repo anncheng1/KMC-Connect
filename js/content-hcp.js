@@ -203,7 +203,7 @@ const MODULES = [
       { q: 'Apnoea in a preterm newborn is defined as cessation of breathing for:', o: ['≥10 seconds', '≥20 seconds, or shorter with bradycardia, cyanosis, pallor or SpO2 <85%', 'Any irregular breathing', 'RR below 40/min'], a: 1, x: 'Periodic breathing with brief pauses is normal.' },
       { q: 'Axillary temperature is 36.2 °C during KMC. First actions?', o: ['Move immediately to an incubator', 'Remove wet clothes, cap, extra blankets, warm the room, minimise interruptions, recheck in 1 hour', 'Start antibiotics', 'Give a warm bath'], a: 1, x: 'Box 7 steps first; alternative warming only if hypothermia persists.' },
       { q: 'Periodic breathing in a preterm newborn:', o: ['Needs caffeine', 'Is normal and needs no treatment', 'Is a sign of sepsis', 'Is an indication for intubation'], a: 1, x: 'It reflects immature respiratory control.' },
-      { q: 'Which SpO2 range do you teach parents as normal?', o: ['80–85%', '85–89%', '90–95%', '98–100%'], a: 2, x: 'Explain the prescribed target for the individual newborn; do not present one range as universal.' },
+      { q: 'What should parents be taught about SpO2 targets?', o: ['Every newborn must be 90–95%', 'Every newborn must be 98–100%', 'Follow the individual newborn’s prescribed target and call staff about alarms', 'Parents should adjust oxygen flow to reach 100%'], a: 2, x: 'Explain the prescribed target for the individual newborn; do not present one range as universal.' },
       { q: 'With a mercury thermometer, keep it in the axilla for at least:', o: ['30 seconds', '1 minute', '3 minutes', '10 minutes'], a: 2, x: 'At least 3 minutes (digital: until it beeps).' }
     ]
   },
