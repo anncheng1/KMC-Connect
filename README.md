@@ -31,7 +31,7 @@ Content is adapted from WHO *Kangaroo mother care: a clinical practice guide* (2
 - Clinical tools — corrected GA, growth velocity, feed-volume helper, expected expressed-milk volumes
 
 ### Privacy
-All data stay **on the device** (browser localStorage). Nothing is sent to any server. Users can download/restore a backup file from Settings.
+All data stay **on the device** (browser localStorage). Nothing is sent to any server. Users can download/restore a backup file from Settings. Because records are stored in the browser, use a personal, password-protected device where possible; do not use the tracker for identifiable clinical documentation or leave patient details on shared devices.
 
 ## Publish on GitHub Pages (no coding needed)
 
