@@ -592,7 +592,9 @@ function viewHcpHome() {
     <a class="tile" href="#/h/cert"><span class="em">🏅</span><b>Certificate</b><span>Print when complete</span></a>
     <a class="tile" href="#/settings"><span class="em">⚙️</span><b>Settings</b><span>Backup, language</span></a>
     <a class="tile" href="#/about"><span class="em">ℹ️</span><b>About & sources</b><span>Licence, disclaimer</span></a>
-  </div>`;
+    <a class="tile teal" href="#/p" aria-label="Open parent and family section"><span class="em">🤱</span><b>Parent & family section</b><span>Open parent home, education lessons, KMC tracker and danger signs</span></a>
+  </div>
+  <div class="card flat"><b>Switch to parent view</b><p class="small muted">You can move between healthcare-provider training and the parent-facing section at any time. Your learning progress and parent records remain saved on this device.</p><a class="btn sec block" href="#/p">Open parent section →</a></div>`;
 }
 function viewModules() {
   return `${backLink('#/h')}<h1>Training modules</h1><p class="small muted">Read each module, watch the linked WHO videos, then pass the quiz (≥${PASS_MARK}%).</p>
