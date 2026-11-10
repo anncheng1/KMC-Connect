@@ -263,24 +263,15 @@ const LESSONS = [
 
 /* Step-by-step placement (Parent counselling guide section 5a) */
 const POSITION_STEPS = [
-  { e: '🧼', t: { en: 'Wash your hands with soap and water.', ms: 'Basuh tangan dengan sabun dan air.', zh: '用肥皂和水洗手。' } },
-  { e: '🚿', t: { en: 'Get ready: bathe daily, keep nails short, remove necklaces, rings and bangles. Wear a loose front-opening top with the binder underneath.',
-                  ms: 'Bersedia: mandi setiap hari, potong kuku pendek, tanggalkan rantai, cincin dan gelang. Pakai baju longgar berbutang depan dengan kain pengikat di bawahnya.',
-                  zh: '做好准备：每天洗澡，剪短指甲，摘下项链、戒指和手镯。穿宽松的前开扣上衣，里面系好背带。' } },
-  { e: '🛋️', t: { en: 'Sit upright or semi-reclined in a comfortable position, with your back supported.',
-                  ms: 'Duduk tegak atau separa bersandar dalam posisi yang selesa, dengan belakang disokong.',
-                  zh: '坐直或舒适地半躺，并让背部得到支撑。' } },
-  { e: '🧢', t: { en: 'Dress your baby in only a cap and a nappy.', ms: 'Pakaikan bayi topi dan lampin sahaja.', zh: '宝宝只戴帽子、穿尿布。' } },
-  { e: '🤲', t: { en: 'Lift your baby: one hand supports the neck, the other supports the bottom.', ms: 'Angkat bayi: satu tangan menyokong leher, satu lagi menyokong punggung.', zh: '抱起宝宝：一只手托住颈部，另一只手托住臀部。' } },
-  { e: '💗', t: { en: 'Place your baby upright and tummy-down on your bare chest between your breasts. Keep the head turned to one side and the neck slightly extended (not chin-to-chest); keep the arms and legs flexed.',
-                  ms: 'Letakkan bayi secara tegak dan meniarap pada dada anda yang terdedah di antara payudara. Pastikan kepala dipaling ke satu sisi dan leher sedikit diluruskan (dagu tidak menekan dada); tangan dan kaki dibengkokkan.',
-                  zh: '让宝宝以直立、俯卧姿势贴在您裸露的胸前、两乳之间。头转向一侧，颈部稍微伸展（不要让下巴贴近胸口），手脚保持弯曲。' } },
-  { e: '🎀', t: { en: 'Secure the binder high under your arms and around your back, crossing above your breasts. Its top edge should sit just below your baby’s ear. Keep it firm enough to prevent slipping, but do not compress the baby’s chest or tummy.',
-                  ms: 'Pasangkan kain pengikat tinggi di bawah ketiak dan melingkari belakang badan, bersilang di atas payudara. Bahagian atas kain berada tepat di bawah telinga bayi. Ikat secukupnya supaya bayi tidak tergelincir, tetapi jangan menekan dada atau perut bayi.',
-                  zh: '将背带固定在腋下高处并绕过背部，在乳房上方交叉。背带上缘应位于宝宝耳朵下方。固定至足以防止宝宝滑落，但不要压迫宝宝的胸部或腹部。' } },
-  { e: '🧥', t: { en: 'Close your KMC top over the binder (tie it underneath if it has ties). Add a blanket if the room is cold.',
-                  ms: 'Tutup baju KMC di atas kain pengikat (ikat di bawah jika ada tali). Tambah selimut jika bilik sejuk.',
-                  zh: '在背带外面穿好袋鼠护理衣（如有绑带，在下方绑好）。房间冷的话加盖毯子。' } }
+  { e: '🧼', page: 64, pageLabel: 49, t: { en: 'Clean your hands. You and anyone helping should perform hand hygiene before touching your baby.', ms: 'Bersihkan tangan. Anda dan sesiapa yang membantu perlu membersihkan tangan sebelum menyentuh bayi.', zh: '清洁双手。您和协助者在接触宝宝前都应先做好手部卫生。' } },
+  { e: '🪑', page: 64, pageLabel: 49, t: { en: 'Get comfortable. Sit upright or slightly reclined with your back supported. Wear a front-opening top; have the binder ready underneath.', ms: 'Pastikan anda selesa. Duduk tegak atau sedikit bersandar dengan belakang disokong. Pakai baju bukaan depan dan sediakan kain pengikat di bahagian dalam.', zh: '调整至舒适姿势。坐直或稍微后靠，并支撑背部。穿前开式上衣，并预先把背带穿在里面。' } },
+  { e: '👶', page: 65, pageLabel: 50, t: { en: 'Prepare your baby as advised by the care team. The WHO guide shows a cap and a clean, dry nappy; monitoring probes may be needed in hospital.', ms: 'Sediakan bayi mengikut arahan pasukan penjagaan. Panduan WHO menunjukkan topi dan lampin yang bersih serta kering; probe pemantauan mungkin diperlukan di hospital.', zh: '按照护理团队的指导准备宝宝。WHO 指南展示了帽子和干净、干燥的尿布；在医院可能需要连接监测探头。' } },
+  { e: '🤲', page: 65, pageLabel: 50, t: { en: 'Support your baby securely. During the first placement, a trained health worker should guide the move and support the head, neck and bottom.', ms: 'Sokong bayi dengan selamat. Semasa peletakan pertama, anggota kesihatan terlatih perlu membimbing pergerakan serta menyokong kepala, leher dan punggung bayi.', zh: '稳妥地支撑宝宝。首次摆放时，应由受过训练的医护人员指导，并支撑宝宝的头部、颈部和臀部。' } },
+  { e: '💗', page: 66, pageLabel: 51, t: { en: 'Place baby high on your bare chest, between your breasts, tummy against you. Turn the head to one side, keep the neck slightly extended and the face visible. The baby should be high enough for you to kiss the head.', ms: 'Letakkan bayi tinggi pada dada anda yang terdedah, di antara payudara, dengan perut menghadap anda. Palingkan kepala ke satu sisi, pastikan leher sedikit diluruskan dan wajah kelihatan. Kedudukan bayi perlu cukup tinggi untuk anda mencium kepalanya.', zh: '让宝宝贴在您裸露胸前较高的位置，位于两乳之间，腹部贴向您。头转向一侧，颈部稍微伸展，脸部清晰可见。宝宝的位置应高到让您能够亲吻其头部。' } },
+  { e: '🎀', page: 67, pageLabel: 52, t: { en: 'Secure the binder as demonstrated by your nurse. It should hold baby firmly without pressing on the chest or tummy, and must not cover the face.', ms: 'Pasangkan kain pengikat seperti yang ditunjukkan oleh jururawat. Bayi perlu dipegang dengan kemas tanpa menekan dada atau perut, dan muka tidak boleh tertutup.', zh: '按照护士示范固定背带。背带应稳固地支撑宝宝，但不可压迫胸部或腹部，也不可遮住脸部。' } },
+  { e: '🔎', page: 68, pageLabel: 53, t: { en: 'Check your baby and any equipment. In hospital, ask the care team to check all tubes, lines and monitoring cables and make sure they are not pulled or kinked.', ms: 'Periksa bayi dan peralatan. Di hospital, minta pasukan penjagaan memeriksa semua tiub, talian dan kabel pemantauan supaya tidak tertarik atau terlipat.', zh: '检查宝宝和设备。在医院，请护理团队检查所有管路、输液管和监测导线，确保没有被拉扯或折弯。' } },
+  { e: '🧥', page: 69, pageLabel: 54, t: { en: 'Add the KMC garment or clothing as taught. Use a light blanket only if the room is cool; do not overheat your baby.', ms: 'Pakai pakaian KMC atau pakaian luar seperti yang diajar. Gunakan selimut nipis hanya jika bilik sejuk; jangan biarkan bayi terlalu panas.', zh: '按照指导穿上袋鼠护理外衣或其他衣物。只有在室温较凉时才加盖薄毯，避免宝宝过热。' } },
+  { e: '👀', page: 69, pageLabel: 54, t: { en: 'Stay together and observe. Make sure baby’s breathing and colour look normal and baby remains secure. Call the nurse immediately if you are worried or notice a danger sign.', ms: 'Kekal bersama dan perhatikan bayi. Pastikan pernafasan dan warna kulit kelihatan normal serta bayi kekal selamat. Panggil jururawat segera jika anda bimbang atau melihat tanda bahaya.', zh: '留在宝宝身边并持续观察。确认宝宝呼吸和肤色正常，且固定稳妥。如有担忧或发现危险征象，请立即呼叫护士。' } }
 ];
 
 /* Danger signs (Parent guide section 8, Clinical guide 4.3.5 & 5.2.3) */
