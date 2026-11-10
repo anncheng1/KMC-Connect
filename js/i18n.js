@@ -6,7 +6,8 @@
 const LANGS = [
   { code: 'en', label: 'English' },
   { code: 'ms', label: 'Bahasa Melayu' },
-  { code: 'zh', label: '中文' }
+  { code: 'zh', label: '中文' },
+  { code: 'iba', label: 'Iban' }
 ];
 
 const STR = {
@@ -111,6 +112,22 @@ const STR = {
     resetConfirm: 'Ini akan memadam SEMUA data KMC Connect pada peranti ini. Teruskan?',
     privacy: 'Semua data kekal dalam peranti ini. Tiada apa-apa dihantar ke pelayan.',
     timerRunning: 'KMC sedang berjalan', disclaimer: 'Aplikasi ini menyokong, tetapi tidak menggantikan, nasihat doktor atau jururawat anda.'
+  },
+
+  iba: {
+    // Exact terms and phrases drawn from Hospital Miri Iban Medical Phrasebook V1.0.
+    mother: 'Indai', father: 'Apai',
+    babyName: 'Nama anak mit',
+    logBreast: 'Nusu tubuh', logEbm: 'Nusu tubuh (susu diperah)',
+    child: 'Nembiak', baby: 'Anak mit baru ada', premature: 'Ada muda',
+    formulaMilk: 'Nusu tin', incubator: 'Katil kaca', intensiveCare: 'Unit rawatan rapi',
+    doctor: 'Lutor', nurse: 'Misi',
+    ibaPhraseExpressMilk: 'Picit tusu nuan 2-3 jam sereta alu anjung',
+    ibaPhraseTubeFeeding: 'Makai ari idung tau mulut ngena tiup',
+    ibaPhraseCritical: 'Anak nuan enda entu manah',
+    ibaPhraseStable: 'Anak nuan udah manah',
+    ibaPhraseReturn: 'Datai baru kesepital enti pengerai ia majak raya.',
+    ibaNotice: 'Some app content is not yet translated into Iban. English is shown where a phrase has not been verified in the Hospital Miri Iban Medical Phrasebook. Please confirm clinical wording with an Iban-speaking healthcare professional.'
   },
 
   zh: {
