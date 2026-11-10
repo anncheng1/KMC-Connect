@@ -253,11 +253,20 @@ function applyLang() {
 
 /* ---------- views: start ---------- */
 function viewStart() {
-  return `<div class="hero"><img src="icons/icon-192.png" alt="KMC Connect logo" style="width:84px;height:84px;border-radius:20px;float:right;margin-left:.8rem"><h1>KMC Connect</h1><p>${esc(t('appTagline'))}</p></div>
-  <div class="card"><label for="startLang">${esc(t('language'))}</label>${langSelect('startLang')}</div>
-  <h2>${esc(t('chooseRole'))}</h2>
-  <button class="rolebtn" data-role="parent"><span class="em">🤱</span><span><b>${esc(t('iAmParent'))}</b><span>${esc(t('iAmParentSub'))}</span></span></button>
-  <button class="rolebtn" data-role="hcp"><span class="em">🩺</span><span><b>${esc(t('iAmHcp'))}</b><span>${esc(t('iAmHcpSub'))}</span></span></button>
+  return `<section class="welcome-hero">
+    <img src="${KMC_PHOTOS[0].src}" alt="${esc(KMC_PHOTOS[0].alt)}" fetchpriority="high">
+    <div class="welcome-shade"><span class="eyebrow">KANGAROO MOTHER CARE</span><h1>KMC Connect</h1><p>${esc(t('appTagline'))}</p></div>
+  </section>
+  <div class="start-controls"><label for="startLang">${esc(t('language'))}</label>${langSelect('startLang')}</div>
+  <h2 class="section-heading">${esc(t('chooseRole'))}</h2>
+  <button class="role-card parent-role" data-role="parent">
+    <img src="${KMC_PHOTOS[1].src}" alt="${esc(KMC_PHOTOS[1].alt)}" loading="lazy">
+    <span class="role-card-copy"><b>${esc(t('iAmParent'))}</b><span>${esc(t('iAmParentSub'))}</span><i>Continue →</i></span>
+  </button>
+  <button class="role-card provider-role" data-role="hcp">
+    <span class="role-symbol" aria-hidden="true">${icon('grad',34)}</span>
+    <span class="role-card-copy"><b>${esc(t('iAmHcp'))}</b><span>${esc(t('iAmHcpSub'))}</span><i>Continue →</i></span>
+  </button>
   <p class="small muted center">${esc(t('privacy'))}</p>`;
 }
 function bindStart() {
@@ -274,27 +283,38 @@ function viewParentHome() {
   let status = '';
   if (b) {
     const today = sscMinutes(b.id, dayStart(Date.now()), Date.now()) / 60;
-    status = `<a class="card flat" href="#/p/track" style="display:flex;align-items:center;gap:1rem;text-decoration:none;color:inherit">
-      ${ringSvg(today)}<div><b>${esc(b.name)}</b><div class="small muted">${esc(t('correctedAge'))}: ${esc(fmtGA(cgaDays(b)))}</div>
-      <div class="small">${today >= 8 ? '✅ ' + esc(t('goalMet')) : esc(t('goalNotMet'))}</div></div></a>`;
+    status = `<a class="baby-status-card" href="#/p/track">
+      <div class="baby-status-ring">${ringSvg(today)}</div>
+      <div class="baby-status-copy"><span class="eyebrow">${esc(L({en:'YOUR BABY TODAY',ms:'BAYI ANDA HARI INI',zh:'宝宝今日情况'}))}</span><b>${esc(b.name)}</b><span class="small muted">${esc(t('correctedAge'))}: ${esc(fmtGA(cgaDays(b)))}</span><span class="baby-status-result">${today >= 8 ? esc(t('goalMet')) : esc(t('goalNotMet'))}</span></div><span class="card-arrow">›</span></a>`;
   }
   S.parentRead = S.parentRead || {};
   const completed = LESSONS.filter(l => S.parentRead[l.id]).length;
   const nextLesson = LESSONS.find(l => !S.parentRead[l.id]) || LESSONS[0];
   const progress = Math.round(completed / LESSONS.length * 100);
-  const progressCard = `<div class="card"><div style="display:flex;justify-content:space-between;gap:.8rem;align-items:center"><div><b>${esc(L({en:'Your KMC learning journey',ms:'Perjalanan pembelajaran KMC anda',zh:'您的袋鼠护理学习进度'}))}</b><div class="small muted">${completed}/${LESSONS.length} ${esc(L({en:'lessons opened',ms:'pelajaran dibuka',zh:'个课程已打开'}))}</div></div><b>${progress}%</b></div><div class="progress" role="progressbar" aria-label="${esc(L({en:'Lesson progress',ms:'Kemajuan pelajaran',zh:'课程进度'}))}" aria-valuenow="${completed}" aria-valuemin="0" aria-valuemax="${LESSONS.length}"><i style="width:${progress}%"></i></div><a class="btn sec block" href="#/p/learn/${nextLesson.id}">${completed === LESSONS.length ? esc(L({en:'Review lessons again',ms:'Ulang kaji pelajaran',zh:'重新复习课程'})) : esc(L({en:'Continue learning',ms:'Teruskan pembelajaran',zh:'继续学习'}))} → ${esc(L(nextLesson.title))}</a></div>`;
-  return `<div class="hero"><img src="icons/icon-192.png" alt="KMC Connect logo" style="width:84px;height:84px;border-radius:20px;float:right;margin-left:.8rem"><h1>KMC Connect</h1><p>${esc(t('appTagline'))}</p></div>
+  const progressCard = `<section class="learning-progress-card">
+    <div class="progress-heading"><div><span class="eyebrow">${esc(L({en:'LEARNING',ms:'PEMBELAJARAN',zh:'学习进度'}))}</span><b>${esc(L({en:'Your KMC journey',ms:'Perjalanan KMC anda',zh:'您的袋鼠式护理学习'}))}</b><span class="small muted">${completed}/${LESSONS.length} ${esc(L({en:'lessons explored',ms:'pelajaran diterokai',zh:'个课程已学习'}))}</span></div><strong>${progress}%</strong></div>
+    <div class="progress" role="progressbar" aria-label="${esc(L({en:'Lesson progress',ms:'Kemajuan pelajaran',zh:'课程进度'}))}" aria-valuenow="${completed}" aria-valuemin="0" aria-valuemax="${LESSONS.length}"><i style="width:${progress}%"></i></div>
+    <a class="btn block" href="#/p/learn/${nextLesson.id}">${completed === LESSONS.length ? esc(L({en:'Review lessons',ms:'Ulang kaji pelajaran',zh:'复习课程'})) : esc(L({en:'Continue learning',ms:'Teruskan pembelajaran',zh:'继续学习'}))} <span aria-hidden="true">→</span></a>
+  </section>`;
+  const features = [
+    {href:'#/p/learn',img:KMC_PHOTOS[2],alt:KMC_PHOTOS[2].alt,title:t('learn'),sub:t('learnSub'),tag:{en:'START HERE',ms:'MULA DI SINI',zh:'从这里开始'}},
+    {href:'#/p/position',img:KMC_PHOTOS[0],alt:KMC_PHOTOS[0].alt,title:t('howToHold'),sub:t('howToHoldSub'),tag:{en:'PRACTICAL GUIDE',ms:'PANDUAN PRAKTIKAL',zh:'实用指南'}},
+    {href:'#/p/track',img:KMC_PHOTOS[1],alt:KMC_PHOTOS[1].alt,title:t('tracker'),sub:t('trackSub'),tag:{en:'DAILY TRACKER',ms:'PENJEJAK HARIAN',zh:'每日记录'}},
+  ];
+  const featureHtml = features.map(x => `<a class="home-feature" href="${x.href}"><img src="${x.img.src}" alt="${esc(x.alt)}" loading="lazy"><span class="home-feature-copy"><span class="eyebrow">${esc(L(x.tag))}</span><b>${esc(x.title)}</b><span>${esc(x.sub)}</span></span><span class="card-arrow">›</span></a>`).join('');
+  return `<section class="parent-welcome">
+    <div><span class="eyebrow">${esc(L({en:'WELCOME TO KMC CONNECT',ms:'SELAMAT DATANG KE KMC CONNECT',zh:'欢迎使用 KMC Connect'}))}</span><h1>${esc(L({en:'Small beginnings. Stronger together.',ms:'Permulaan kecil. Lebih kuat bersama.',zh:'小小的开始，一起变得更强。'}))}</h1><p>${esc(t('appTagline'))}</p></div>
+    <img src="${KMC_PHOTOS[0].src}" alt="${esc(KMC_PHOTOS[0].alt)}" fetchpriority="high">
+  </section>
   ${status}
   ${progressCard}
-  <div class="card flat"><b>${esc(L({en:'KMC position: remember these 3 checks',ms:'Posisi KMC: ingat 3 perkara ini',zh:'袋鼠护理姿势：记住这3点'}))}</b><div class="grid g3" style="margin-top:.7rem"><div class="center"><div style="font-size:2rem">👃</div><b class="small">${esc(L({en:'Airway clear',ms:'Saluran nafas terbuka',zh:'呼吸道通畅'}))}</b></div><div class="center"><div style="font-size:2rem">🤱</div><b class="small">${esc(L({en:'Chest-to-chest',ms:'Dada ke dada',zh:'胸贴胸'}))}</b></div><div class="center"><div style="font-size:2rem">🎀</div><b class="small">${esc(L({en:'Binder secure',ms:'Pengikat kemas',zh:'背带稳固'}))}</b></div></div><a class="small" href="#/p/position">${esc(L({en:'See real-life KMC photographs',ms:'Lihat foto sebenar posisi KMC',zh:'查看真实袋鼠式护理照片'}))} →</a></div>
-  <div class="grid">
-    <a class="tile teal" href="#/p/learn"><span class="em">📖</span><b>${esc(t('learn'))}</b><span>${esc(t('learnSub'))}</span></a>
-    <a class="tile teal" href="#/p/position"><span class="em">🫶</span><b>${esc(t('howToHold'))}</b><span>${esc(t('howToHoldSub'))}</span></a>
-    <a class="tile coral" href="#/p/track"><span class="em">⏱️</span><b>${esc(t('tracker'))}</b><span>${esc(t('trackSub'))}</span></a>
-    <a class="tile red" href="#/p/danger"><span class="em">🚨</span><b>${esc(t('danger'))}</b><span>${esc(t('dangerSub'))}</span></a>
-    <a class="tile" href="#/p/videos"><span class="em">🎬</span><b>${esc(t('videos'))}</b><span>${esc(t('videosSub'))}</span></a>
-    <a class="tile" href="#/p/gallery"><span class="em">🖼️</span><b>${esc(L({en:'Parent gallery',ms:'Galeri ibu bapa',zh:'家长学习图集'}))}</b><span>${esc(L({en:'Feeding · family · observation · home',ms:'Penyusuan · keluarga · pemerhatian · rumah',zh:'喂养 · 家庭 · 观察 · 居家'}))}</span></a>
-    <a class="tile" href="#/settings"><span class="em">⚙️</span><b>${esc(t('settings'))}</b><span>${esc(t('language'))} · ${esc(t('backup'))}</span></a>
+  <div class="section-title-row"><h2>${esc(L({en:'What would you like to do?',ms:'Apa yang anda ingin lakukan?',zh:'您想做什么？'}))}</h2></div>
+  <div class="home-feature-list">${featureHtml}</div>
+  <a class="danger-feature" href="#/p/danger"><span class="danger-feature-mark">!</span><span><b>${esc(t('danger'))}</b><small>${esc(t('dangerSub'))}</small></span><span class="card-arrow">›</span></a>
+  <div class="secondary-links">
+    <a href="#/p/gallery">${esc(L({en:'Parent learning gallery',ms:'Galeri pembelajaran ibu bapa',zh:'家长学习图集'}))} <span>›</span></a>
+    <a href="#/p/videos">${esc(t('videos'))} <span>›</span></a>
+    <a href="#/settings">${esc(t('settings'))} <span>›</span></a>
   </div>
   <p class="small muted center" style="margin-top:1rem">${esc(t('disclaimer'))} · <a href="#/about">${esc(t('about'))}</a></p>`;
 }
@@ -646,25 +666,26 @@ const competent = s => S.skills[s.id] && S.skills[s.id].last && S.skills[s.id].l
 function viewHcpHome() {
   const np = MODULES.filter(passed).length, ns = SKILLS.filter(competent).length;
   const l = S.learner;
-  return `<div class="hero"><img src="icons/icon-192.png" alt="KMC Connect logo" style="width:84px;height:84px;border-radius:20px;float:right;margin-left:.8rem"><h1>KMC Connect · Provider</h1><p>Structured KMC training based on WHO <i>Kangaroo mother care: a clinical practice guide</i> (2025).</p></div>
-  <div class="card">${l ? `<div style="display:flex;gap:.6rem;align-items:center"><div style="flex:1"><b>${esc(l.name)}</b><div class="small muted">${esc(l.role)}${l.facility ? ' · ' + esc(l.facility) : ''}</div></div><button class="btn sm sec" data-learner>Edit</button></div>`
-    : `<p>Create a learner profile to track progress and print a certificate.</p><button class="btn" data-learner>Create profile</button>`}
-    <div style="margin-top:.8rem"><div class="small">Knowledge modules passed: <b>${np}/${MODULES.length}</b></div><div class="progress"><i style="width:${np / MODULES.length * 100}%"></i></div></div>
-    <div style="margin-top:.6rem"><div class="small">Skills signed off competent: <b>${ns}/${SKILLS.length}</b></div><div class="progress"><i style="width:${ns / SKILLS.length * 100}%;background:var(--coral)"></i></div></div>
+  return `<section class="provider-welcome">
+    <img src="${KMC_PHOTOS[0].src}" alt="${esc(KMC_PHOTOS[0].alt)}" fetchpriority="high">
+    <div><span class="eyebrow">HEALTHCARE PROFESSIONALS</span><h1>KMC Connect</h1><p>Practical KMC learning, clinical tools and competency tracking.</p></div>
+  </section>
+  <section class="provider-profile-card">${l ? `<div class="profile-top"><div><span class="eyebrow">YOUR LEARNING PROFILE</span><b>${esc(l.name)}</b><span class="small muted">${esc(l.role)}${l.facility ? ' · ' + esc(l.facility) : ''}</span></div><button class="btn sm sec" data-learner>Edit</button></div>` : `<span class="eyebrow">GET STARTED</span><p>Create a learner profile to track your progress and print your certificate.</p><button class="btn" data-learner>Create learner profile</button>`}
+    <div class="provider-progress"><div><span>Knowledge modules</span><b>${np}/${MODULES.length}</b></div><div class="progress"><i style="width:${np / MODULES.length * 100}%"></i></div></div>
+    <div class="provider-progress"><div><span>Competencies signed off</span><b>${ns}/${SKILLS.length}</b></div><div class="progress"><i style="width:${ns / SKILLS.length * 100}%"></i></div></div>
+  </section>
+  <h2 class="section-heading">Learning & clinical tools</h2>
+  <div class="provider-menu">
+    <a href="#/h/modules"><span class="provider-menu-icon">${icon('grad',25)}</span><span><b>Training modules</b><small>${MODULES.length} modules · quizzes (pass ${PASS_MARK}%)</small></span><i>›</i></a>
+    <a href="#/h/skills"><span class="provider-menu-icon">${icon('check',25)}</span><span><b>Skills checklists</b><small>${SKILLS.length} observed competencies</small></span><i>›</i></a>
+    <a href="#/h/counsel"><span class="provider-menu-icon">${icon('users',25)}</span><span><b>Counselling mode</b><small>Parent lessons in EN / BM / 中文</small></span><i>›</i></a>
+    <a href="#/h/unit"><span class="provider-menu-icon">${icon('clock',25)}</span><span><b>Unit KMC monitor</b><small>Skin-to-skin hours, feeds and indicators</small></span><i>›</i></a>
+    <a href="#/h/tools"><span class="provider-menu-icon">${icon('tool',25)}</span><span><b>Clinical tools</b><small>Corrected age, growth velocity and volumes</small></span><i>›</i></a>
+    <a href="#/h/videos"><span class="provider-menu-icon">${icon('book',25)}</span><span><b>WHO video library</b><small>17 educational videos</small></span><i>›</i></a>
+    <a href="#/h/cert"><span class="provider-menu-icon">${icon('check',25)}</span><span><b>Certificate</b><small>Print after completing the programme</small></span><i>›</i></a>
   </div>
-  <div class="grid g3">
-    <a class="tile teal" href="#/h/modules"><span class="em">🎓</span><b>Training modules</b><span>${MODULES.length} modules · quizzes (pass ${PASS_MARK}%)</span></a>
-    <a class="tile teal" href="#/h/skills"><span class="em">✅</span><b>Skills checklists</b><span>${SKILLS.length} OSCE-style competencies</span></a>
-    <a class="tile coral" href="#/h/counsel"><span class="em">🗣️</span><b>Counselling mode</b><span>Parent lessons in EN / BM / 中文</span></a>
-    <a class="tile" href="#/h/unit"><span class="em">🏥</span><b>Unit KMC monitor</b><span>SSC hours, feeds, indicators</span></a>
-    <a class="tile" href="#/h/tools"><span class="em">🧮</span><b>Clinical tools</b><span>CGA, growth velocity, volumes</span></a>
-    <a class="tile" href="#/h/videos"><span class="em">🎬</span><b>WHO video library</b><span>17 videos</span></a>
-    <a class="tile" href="#/h/cert"><span class="em">🏅</span><b>Certificate</b><span>Print when complete</span></a>
-    <a class="tile" href="#/settings"><span class="em">⚙️</span><b>Settings</b><span>Backup, language</span></a>
-    <a class="tile" href="#/about"><span class="em">ℹ️</span><b>About & sources</b><span>Licence, disclaimer</span></a>
-    <a class="tile teal" href="#/p" aria-label="Open parent and family section"><span class="em">🤱</span><b>Parent & family section</b><span>Open parent home, education lessons, KMC tracker and danger signs</span></a>
-  </div>
-  <div class="card flat"><b>Switch to parent view</b><p class="small muted">You can move between healthcare-provider training and the parent-facing section at any time. Your learning progress and parent records remain saved on this device.</p><a class="btn sec block" href="#/p">Open parent section →</a></div>`;
+  <div class="secondary-links"><a href="#/p">Parent & family section <span>›</span></a><a href="#/settings">Settings <span>›</span></a><a href="#/about">About & sources <span>›</span></a></div>
+  <p class="small muted center">Content adapted from WHO KMC guidance (2025).</p>`;
 }
 function viewModules() {
   return `${backLink('#/h')}<h1>Training modules</h1><p class="small muted">Read each module, watch the linked WHO videos, then pass the quiz (≥${PASS_MARK}%).</p>
