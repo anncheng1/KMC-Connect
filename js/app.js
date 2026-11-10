@@ -293,6 +293,7 @@ function viewParentHome() {
     <a class="tile coral" href="#/p/track"><span class="em">⏱️</span><b>${esc(t('tracker'))}</b><span>${esc(t('trackSub'))}</span></a>
     <a class="tile red" href="#/p/danger"><span class="em">🚨</span><b>${esc(t('danger'))}</b><span>${esc(t('dangerSub'))}</span></a>
     <a class="tile" href="#/p/videos"><span class="em">🎬</span><b>${esc(t('videos'))}</b><span>${esc(t('videosSub'))}</span></a>
+    <a class="tile" href="#/p/gallery"><span class="em">🖼️</span><b>${esc(L({en:'Parent gallery',ms:'Galeri ibu bapa',zh:'家长学习图集'}))}</b><span>${esc(L({en:'Feeding · family · observation · home',ms:'Penyusuan · keluarga · pemerhatian · rumah',zh:'喂养 · 家庭 · 观察 · 居家'}))}</span></a>
     <a class="tile" href="#/settings"><span class="em">⚙️</span><b>${esc(t('settings'))}</b><span>${esc(t('language'))} · ${esc(t('backup'))}</span></a>
   </div>
   <p class="small muted center" style="margin-top:1rem">${esc(t('disclaimer'))} · <a href="#/about">${esc(t('about'))}</a></p>`;
@@ -351,6 +352,19 @@ function viewPosition(base = '#/p') {
   return `${backLink(base)}<h1>${esc(t('howToHold'))}</h1>${positionFigure()}<div style="height:1rem"></div>${positionBody()}
     <a class="btn sec block" href="${v.url}" target="_blank" rel="noopener">▶ ${esc(L(v.title))}</a>
     <div style="height:.5rem"></div><a class="btn sec block" href="${v2.url}" target="_blank" rel="noopener">▶ ${esc(L(v2.title))}</a>`;
+}
+function viewParentGallery() {
+  const items = [
+    { icon:'🍼', title:{en:'Breastfeeding and expressed breast milk',ms:'Penyusuan dan susu ibu perahan',zh:'亲喂与挤出的母乳'}, desc:{en:'Learn how to breastfeed during KMC, express and store breast milk safely, and give expressed milk as advised by your care team.',ms:'Pelajari cara menyusu semasa KMC, memerah dan menyimpan susu ibu dengan selamat, serta memberi susu perahan mengikut nasihat pasukan penjagaan.',zh:'学习如何在袋鼠式护理时亲喂、安全挤奶和储存母乳，并按照医护团队建议喂食。'}, image:KMC_PHOTOS[1], lesson:7, video:13 },
+    { icon:'👨‍👩‍👧', title:{en:'Family involvement and shared care',ms:'Penglibatan keluarga dan penjagaan bersama',zh:'家庭参与与共同照护'}, desc:{en:'Fathers and trusted family members can support the mother, help with daily needs and, when taught and approved by the team, take turns providing skin-to-skin care.',ms:'Bapa dan ahli keluarga yang dipercayai boleh menyokong ibu, membantu keperluan harian dan, selepas diajar serta mendapat kebenaran pasukan, bergilir-gilir melakukan sentuhan kulit ke kulit.',zh:'父亲及可信赖的家人可以支持母亲、分担日常事务，并在接受指导及团队同意后轮流进行肌肤接触护理。'}, image:KMC_PHOTOS[0], lesson:10, video:15 },
+    { icon:'👀', title:{en:'Observing your baby during KMC',ms:'Memerhati bayi semasa KMC',zh:'袋鼠式护理期间观察宝宝'}, desc:{en:'Know what to observe: breathing, colour, warmth, movement and feeding. Learn warning signs and when to call the nurse or seek urgent help.',ms:'Ketahui perkara yang perlu diperhatikan: pernafasan, warna kulit, kehangatan, pergerakan dan penyusuan. Kenali tanda amaran dan bila perlu memanggil jururawat atau mendapatkan bantuan segera.',zh:'了解需要观察的情况：呼吸、肤色、体温、活动和喂养。认识警示征象，以及何时呼叫护士或寻求紧急帮助。'}, image:KMC_PHOTOS[2], lesson:8, video:10 },
+    { icon:'🏠', title:{en:'Continuing KMC safely at home',ms:'Meneruskan KMC dengan selamat di rumah',zh:'在家安全地继续袋鼠式护理'}, desc:{en:'Prepare for discharge, continue skin-to-skin care, attend follow-up visits and use a safe back-sleeping position whenever your baby is not receiving KMC.',ms:'Bersedia untuk discaj, teruskan penjagaan kulit ke kulit, hadir ke temu janji susulan dan tidurkan bayi secara terlentang dengan selamat apabila tidak melakukan KMC.',zh:'做好出院准备，继续肌肤接触护理，按时复诊；宝宝不进行袋鼠式护理时，应采用安全的仰卧睡姿。'}, image:KMC_PHOTOS[0], lesson:9, video:16 }
+  ];
+  const cards = items.map(function(x) {
+    const v = VIDEOS.find(function(y) { return y.n === x.video; });
+    return '<article class="kmc-learning-card"><img src="' + x.image.src + '" alt="' + esc(x.image.alt) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer"><div class="kmc-learning-copy"><div class="small muted">' + x.icon + ' ' + esc(L({en:'PARENT GUIDE',ms:'PANDUAN IBU BAPA',zh:'家长指南'})) + '</div><h2>' + esc(L(x.title)) + '</h2><p>' + esc(L(x.desc)) + '</p><p class="small muted">Photo: ' + esc(x.image.credit) + '</p><div class="btnrow"><a class="btn sec" href="#/p/learn/' + x.lesson + '">' + esc(L({en:'Read lesson',ms:'Baca pelajaran',zh:'阅读课程'})) + ' →</a><a class="btn ghost" href="' + v.url + '" target="_blank" rel="noopener">▶ ' + esc(L({en:'Watch video',ms:'Tonton video',zh:'观看视频'})) + '</a></div></div></article>';
+  }).join('');
+  return backLink('#/p') + '<h1>' + esc(L({en:'KMC Parent Learning Gallery',ms:'Galeri Pembelajaran KMC untuk Ibu Bapa',zh:'袋鼠式护理家长学习图集'})) + '</h1><p class="muted">' + esc(L({en:'Explore practical topics with real-life photographs, short guidance and links to parent lessons.',ms:'Terokai topik praktikal melalui foto sebenar, panduan ringkas dan pautan ke pelajaran untuk ibu bapa.',zh:'通过真实照片、简明指导和家长课程链接，了解实用主题。'})) + '</p><div class="kmc-learning-gallery">' + cards + '</div><div class="callout amber"><b>' + esc(L({en:'Every baby is different',ms:'Setiap bayi berbeza',zh:'每个宝宝都不同'})) + '</b><p>' + esc(L({en:'Follow your baby’s individual care plan. If your baby is very small, unwell, or receiving oxygen, CPAP or other support, ask the clinical team before changing position or providing KMC.',ms:'Ikuti pelan penjagaan khusus bayi anda. Jika bayi sangat kecil, tidak sihat atau menerima oksigen, CPAP atau sokongan lain, rujuk pasukan klinikal sebelum mengubah posisi atau melakukan KMC.',zh:'请遵循宝宝的个别护理计划。如果宝宝非常小、身体不适，或正在接受氧气、CPAP或其他支持，在改变姿势或进行袋鼠式护理前请先咨询临床团队。'})) + '</p></div><p class="small muted">' + esc(L({en:'Photographs are credited to their contributors. Third-party image permissions should be confirmed before redistribution.',ms:'Foto dikreditkan kepada penyumbangnya. Kebenaran penggunaan foto pihak ketiga perlu disahkan sebelum pengedaran semula.',zh:'照片已注明提供者。再次传播前应确认第三方图片的使用许可。'})) + '</p>';
 }
 function viewDanger(base = '#/p') {
   const em = S.settings.emergency || '999';
@@ -888,6 +902,7 @@ function router() {
   else if (route(/^#\/p\/learn$/)) { mode = 'parent'; html = viewLessons(); }
   else if (route(/^#\/p\/learn\/(\w+)$/)) { mode = 'parent'; html = viewLesson(m[1]); }
   else if (route(/^#\/p\/position$/)) { mode = 'parent'; html = viewPosition(); }
+  else if (route(/^#\/p\/gallery$/)) { mode = 'parent'; html = viewParentGallery(); }
   else if (route(/^#\/p\/danger$/)) { mode = 'parent'; html = viewDanger(); }
   else if (route(/^#\/p\/videos$/)) { mode = 'parent'; html = viewVideos('parent'); }
   else if (route(/^#\/p\/track$/)) { mode = 'parent'; html = viewTrackerParent(); after = () => bindTracker(activeParentBaby()); }
