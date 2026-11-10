@@ -352,28 +352,39 @@ function viewLesson(id, base = '#/p/learn') {
   </div>`;
 }
 function positionBody() {
-  const guidePdf = 'https://cdn.who.int/media/docs/default-source/newborn-health/kangaroo_mother_care_a_clinical_practice_guide.pdf#page=61';
+  const guidePdf = 'https://cdn.who.int/media/docs/default-source/newborn-health/kangaroo_mother_care_a_clinical_practice_guide.pdf';
   const video = VIDEOS.find(x => x.n === 7);
   const steps = POSITION_STEPS.map((s, i) => `<article class="position-step">
     <div class="position-step-head"><span class="position-step-number">${i + 1}</span><span class="position-step-icon" aria-hidden="true">${s.e}</span></div>
-    <p>${esc(L(s.t))}</p>
+    <div class="position-step-copy"><p>${esc(L(s.t))}</p><a class="position-who-link" href="${guidePdf}#page=${s.page}" target="_blank" rel="noopener">${esc(L({en:'View WHO photo · guide page',ms:'Lihat foto WHO · halaman panduan',zh:'查看 WHO 照片 · 指南页'}))} ${s.pageLabel} ↗</a></div>
   </article>`).join('');
-  return `<section class="position-steps" aria-label="Step-by-step KMC positioning">
-    <h2>${esc(L({en:'Step-by-step: placing your baby in KMC',ms:'Langkah demi langkah: meletakkan bayi dalam posisi KMC',zh:'逐步学习：将宝宝放入袋鼠式护理姿势'}))}</h2>
+  return `<div class="position-intro">
+    <div class="position-intro-copy"><b>${esc(L({en:'A simple guide for a stable baby',ms:'Panduan ringkas untuk bayi yang stabil',zh:'适用于情况稳定宝宝的简易指南'}))}</b>
+    <p>${esc(L({en:'Your nurse or doctor should demonstrate the first placement and check that the position is safe. Take it one step at a time.',ms:'Jururawat atau doktor perlu menunjukkan cara meletakkan bayi buat kali pertama dan memastikan posisi selamat. Ikuti setiap langkah satu demi satu.',zh:'首次摆放宝宝时，应由护士或医生示范并确认姿势安全。请逐步进行。'}))}</p></div>
+    <img src="${KMC_PHOTOS[0].src}" alt="${esc(KMC_PHOTOS[0].alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+  </div>
+  <section class="position-steps" aria-label="Step-by-step KMC positioning">
+    <div class="position-section-title"><h2>${esc(L({en:'9 steps to a safe KMC position',ms:'9 langkah untuk posisi KMC yang selamat',zh:'安全袋鼠式护理姿势的 9 个步骤'}))}</h2><p>${esc(L({en:'Tap the WHO photo link under each step to see the original clinical photographs.',ms:'Tekan pautan foto WHO di bawah setiap langkah untuk melihat foto klinikal asal.',zh:'点击每个步骤下方的 WHO 照片链接，查看原始临床照片。'}))}</p></div>
     ${steps}
   </section>
-  <div class="callout green"><b>${esc(L({en:'Before you finish, check:',ms:'Sebelum selesai, periksa:',zh:'完成前请检查：'}))}</b><ul>
-    <li>${esc(L({en:'Baby’s face is visible; nose and mouth are not covered.',ms:'Wajah bayi kelihatan; hidung dan mulut tidak tertutup.',zh:'宝宝的脸清晰可见；鼻子和嘴巴没有被遮挡。'}))}</li>
-    <li>${esc(L({en:'Head is turned to one side and neck is slightly extended — never chin-to-chest.',ms:'Kepala dipaling ke satu sisi dan leher sedikit diluruskan — dagu tidak menekan dada.',zh:'头转向一侧，颈部稍微伸展——不要让下巴贴近胸口。'}))}</li>
-    <li>${esc(L({en:'Binder is secure but does not restrict chest or abdominal movement.',ms:'Kain pengikat kemas tetapi tidak menyekat pergerakan dada atau perut.',zh:'背带稳固，但不能限制胸部或腹部活动。'}))}</li>
-  </ul></div>
-  <div class="callout amber"><b>${esc(L({en:'Important safety note',ms:'Peringatan keselamatan penting',zh:'重要安全提示'}))}</b><p>${esc(t('sickBabyNote'))}</p><p>${esc(L({en:'For a very small or sick baby, or a baby receiving CPAP, oxygen or other support, the transfer must be planned and performed with the clinical team. Do not attempt to reposition the baby alone.',ms:'Bagi bayi yang sangat kecil atau sakit, atau bayi yang menerima CPAP, oksigen atau sokongan lain, pemindahan mesti dirancang dan dilakukan bersama pasukan klinikal. Jangan cuba mengubah posisi bayi seorang diri.',zh:'对于极小或患病的宝宝，或正在接受 CPAP、氧气或其他支持的宝宝，必须与临床团队共同计划并完成转移。请勿独自尝试重新摆放宝宝。'}))}</p></div>
-  <div class="card">
+  <div class="position-check-card"><b>${esc(L({en:'Final safety check',ms:'Pemeriksaan keselamatan akhir',zh:'最后的安全检查'}))}</b>
+    <ul>
+      <li>${esc(L({en:'Face visible; nose and mouth are clear.',ms:'Wajah kelihatan; hidung dan mulut tidak terhalang.',zh:'脸部清晰可见；鼻子和嘴巴保持通畅。'}))}</li>
+      <li>${esc(L({en:'Head turned to one side; neck slightly extended — never chin-to-chest.',ms:'Kepala dipaling ke satu sisi; leher sedikit diluruskan — dagu tidak menekan dada.',zh:'头转向一侧；颈部稍微伸展——切勿让下巴贴近胸口。'}))}</li>
+      <li>${esc(L({en:'Baby is high on your chest and securely supported.',ms:'Bayi berada tinggi pada dada dan disokong dengan selamat.',zh:'宝宝位于胸前较高位置，并得到稳妥支撑。'}))}</li>
+      <li>${esc(L({en:'Binder is secure but does not squeeze the chest or tummy.',ms:'Kain pengikat kemas tetapi tidak menekan dada atau perut.',zh:'背带固定稳妥，但不会挤压胸部或腹部。'}))}</li>
+    </ul>
+  </div>
+  <div class="callout amber"><b>${esc(L({en:'Important: when your baby is very small or unwell',ms:'Penting: jika bayi sangat kecil atau tidak sihat',zh:'重要提示：如果宝宝非常小或身体不适'}))}</b>
+    <p>${esc(L({en:'If your baby is very small, unwell, or receiving CPAP, oxygen, IV fluids or other support, do not move or reposition your baby by yourself. The clinical team must plan and perform the transfer with the appropriate staff and monitoring.',ms:'Jika bayi sangat kecil, tidak sihat atau menerima CPAP, oksigen, cecair intravena atau sokongan lain, jangan pindahkan atau ubah posisi bayi sendiri. Pasukan klinikal mesti merancang dan melakukan pemindahan dengan petugas serta pemantauan yang sesuai.',zh:'如果宝宝非常小、身体不适，或正在接受 CPAP、氧气、静脉输液或其他支持，请勿自行移动或重新摆放宝宝。临床团队必须安排适当人员和监测后执行转移。'}))}</p>
+  </div>
+  <div class="card position-video-card">
     <h3>${esc(L({en:'Watch the WHO demonstration',ms:'Tonton demonstrasi WHO',zh:'观看 WHO 示范视频'}))}</h3>
-    <p class="small muted">${esc(L({en:'Video 7 demonstrates placing a stable newborn in the KMC position. The WHO guide also contains a photographic sequence showing preparation, transfer, positioning and binder placement.',ms:'Video 7 menunjukkan cara meletakkan bayi stabil dalam posisi KMC. Panduan WHO turut mengandungi siri foto tentang persediaan, pemindahan, posisi dan pemasangan kain pengikat.',zh:'视频 7 示范如何将情况稳定的新生儿放入袋鼠式护理姿势。WHO 指南也包含准备、转移、摆位及固定背带的连续照片。'}))}</p>
+    <p class="small muted">${esc(L({en:'Video 7 shows how a trained health worker places a stable newborn in the KMC position.',ms:'Video 7 menunjukkan cara anggota kesihatan terlatih meletakkan bayi stabil dalam posisi KMC.',zh:'视频 7 示范由受过训练的医护人员如何将情况稳定的新生儿摆放成袋鼠式护理姿势。'}))}</p>
     <a class="btn sec block" href="${video.url}" target="_blank" rel="noopener">▶ ${esc(L(video.title))}</a>
-    <a class="btn ghost block" href="${guidePdf}" target="_blank" rel="noopener">${esc(L({en:'Open WHO photographic sequence (guide pages 49–54)',ms:'Buka siri foto WHO (halaman panduan 49–54)',zh:'打开 WHO 连续照片（指南第49–54页）'}))} ↗</a>
-  </div>`;
+    <a class="btn ghost block" href="${guidePdf}#page=64" target="_blank" rel="noopener">${esc(L({en:'Open the complete WHO photo sequence (guide pages 49–54)',ms:'Buka siri foto WHO lengkap (halaman panduan 49–54)',zh:'打开完整 WHO 照片序列（指南第49–54页）'}))} ↗</a>
+  </div>
+  <p class="small muted position-credit">Based on WHO. ${esc(L({en:'Kangaroo mother care: a clinical practice guide (2025), Table 3, pages 49–54. WHO licence: CC BY-NC-SA 3.0 IGO.',ms:'Kangaroo mother care: a clinical practice guide (2025), Jadual 3, halaman 49–54. Lesen WHO: CC BY-NC-SA 3.0 IGO.',zh:'依据 WHO《袋鼠式护理：临床实践指南》（2025），表 3，第 49–54 页。WHO 许可：CC BY-NC-SA 3.0 IGO。'}))}</p>`;
 }
 function viewPosition(base = '#/p') {
   const v = VIDEOS.find(x => x.n === 7), v2 = VIDEOS.find(x => x.n === 2);
