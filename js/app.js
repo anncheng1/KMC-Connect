@@ -332,14 +332,22 @@ function viewLesson(id, base = '#/p/learn') {
   if (!S.parentRead[l.id]) { S.parentRead[l.id] = Date.now(); save(); }
   const prev = LESSONS.find(x => x.id === l.id - 1), next = LESSONS.find(x => x.id === l.id + 1);
   const v = l.video ? VIDEOS.find(x => x.n === l.video) : null;
-  const body = l.steps ? positionBody() : `<div class="card"><h3>${esc(t('keyMessages'))}</h3><ul class="msgs">${L(l.msgs).map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>`;
+  const photo = l.id === 4 || l.id === 7 ? KMC_PHOTOS[1] : (l.id === 2 || l.id === 9 ? KMC_PHOTOS[2] : KMC_PHOTOS[0]);
+  const photoBlock = `<figure class="lesson-photo"><img src="${photo.src}" alt="${esc(photo.alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"><figcaption>${esc(L(photo.title))} <span>Photo: ${esc(photo.credit)}</span></figcaption></figure>`;
+  const messages = L(l.msgs) || [];
+  const body = l.steps ? positionBody() : `<section class="lesson-message-section" aria-label="Lesson key messages">
+    <div class="lesson-section-heading"><span>${esc(L({en:'What to know',ms:'Perkara penting',zh:'重点知识'}))}</span><small>${messages.length} ${esc(L({en:'key points',ms:'perkara utama',zh:'个重点'}))}</small></div>
+    <div class="lesson-message-list">${messages.map((m,i) => `<article class="lesson-message"><span class="lesson-message-number">${String(i+1).padStart(2,'0')}</span><p>${esc(m)}</p></article>`).join('')}</div>
+  </section>`;
   return `${backLink(base)}
-  <div class="hero"><div style="font-size:2.4rem">${l.icon}</div><p class="small">${esc(t('lesson'))} ${l.id} / ${LESSONS.length}</p><h1>${esc(L(l.title))}</h1></div>
-  ${l.steps || l.id === 6 ? positionFigure() + '<div style="height:1rem"></div>' : ''}
+  <div class="lesson-topline"><span>${esc(t('lesson'))} ${l.id} / ${LESSONS.length}</span><span>${Math.round(l.id/LESSONS.length*100)}%</span></div>
+  <div class="lesson-progress-track"><span style="width:${Math.round(l.id/LESSONS.length*100)}%"></span></div>
+  <header class="lesson-heading"><div class="lesson-heading-icon" aria-hidden="true">${l.icon}</div><div><p>${esc(L({en:'KMC learning',ms:'Pembelajaran KMC',zh:'袋鼠式护理学习'}))}</p><h1>${esc(L(l.title))}</h1></div></header>
+  ${l.steps || l.id === 6 ? positionFigure() : photoBlock}
   ${body}
-  ${v ? `<a class="btn sec block" href="${v.url}" target="_blank" rel="noopener">▶ ${esc(t('watchVideo'))}: ${esc(L(v.title))}</a>` : ''}
-  <div class="btnrow" style="margin-top:1rem;justify-content:space-between">
-    ${prev ? `<a class="btn ghost" href="${base}/${prev.id}">← ${esc(t('prev'))}</a>` : '<span></span>'}
+  ${v ? `<section class="lesson-video-card"><div><b>${esc(L({en:'Watch and learn',ms:'Tonton dan pelajari',zh:'观看与学习'}))}</b><p>${esc(L(v.title))}</p></div><a class="btn sec" href="${v.url}" target="_blank" rel="noopener">▶ ${esc(t('watchVideo'))}</a></section>` : ''}
+  <div class="lesson-navigation">
+    ${prev ? `<a class="btn ghost" href="${base}/${prev.id}">← ${esc(t('prev'))}</a>` : '<a class="btn ghost" href="'+base+'">'+esc(L({en:'All lessons',ms:'Semua pelajaran',zh:'所有课程'}))+'</a>'}
     ${next ? `<a class="btn" href="${base}/${next.id}">${esc(t('next'))} →</a>` : `<a class="btn red" href="${base}/danger">🚨 ${esc(t('danger'))}</a>`}
   </div>`;
 }
