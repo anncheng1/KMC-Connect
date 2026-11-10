@@ -116,11 +116,9 @@ const STR = {
 
   iba: {
     // Exact terms and phrases drawn from Hospital Miri Iban Medical Phrasebook V1.0.
-    mother: 'Indai', father: 'Apai',
     logBreast: 'Nusu tubuh',
-    child: 'Nembiak', baby: 'Anak mit baru ada', premature: 'Ada muda',
+    child: 'Nembiak', premature: 'Ada muda',
     formulaMilk: 'Nusu tin', incubator: 'Katil kaca', intensiveCare: 'Unit rawatan rapi',
-    doctor: 'Lutor', nurse: 'Misi',
     ibaPhraseExpressMilk: 'Picit tusu nuan 2-3 jam sereta alu anjung',
     ibaPhraseTubeFeeding: 'Makai ari idung tau mulut ngena tiup',
     ibaPhraseCritical: 'Anak nuan enda entu manah',
