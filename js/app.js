@@ -155,35 +155,45 @@ function lineChart(pts) {
   return s + '</svg>';
 }
 /* original line-drawing of the KMC position with translated labels */
+/* Real-life KMC photographs referenced on the WHO 2025 clinical practice guide page.
+ * Photo credits are retained below each image. Confirm third-party image permissions
+ * before public redistribution; the WHO guide licence does not automatically clear them.
+ */
+const KMC_PHOTOS = [
+  {
+    src: 'https://cdn.who.int/media/images/default-source/mca/2-newborn-health/kmc-practice-guide/proud-parents-welcome-their-newborn.tmb-1920v.jpg?sfvrsn=7016155b_1',
+    alt: 'Mother providing immediate KMC to her preterm newborn receiving CPAP, with the father beside her',
+    title: { en: 'Holding your baby close', ms: 'Mendakap bayi dengan rapat', zh: '让宝宝贴近您的胸前' },
+    credit: 'General TWG Long An Hospital / KC. Luong'
+  },
+  {
+    src: 'https://cdn.who.int/media/images/default-source/mca/2-newborn-health/kmc-practice-guide/a-mother-breastfeeds-her-newborn.tmb-1920v.jpg?sfvrsn=fefbddea_1',
+    alt: 'Mother breastfeeding her newborn while the baby is positioned upright against her chest',
+    title: { en: 'Breastfeeding in the KMC position', ms: 'Penyusuan dalam posisi KMC', zh: '袋鼠式护理姿势下哺乳' },
+    credit: 'General TWG Long An Hospital / KC. Luong'
+  },
+  {
+    src: 'https://cdn.who.int/media/images/default-source/mca/2-newborn-health/kmc-practice-guide/new-mothers-with-their-infants.tmb-1920v.jpg?sfvrsn=4565c0c4_1',
+    alt: 'Mothers practising KMC with their newborns in a hospital mother-newborn care unit',
+    title: { en: 'KMC in the hospital', ms: 'KMC di hospital', zh: '在医院进行袋鼠式护理' },
+    credit: 'WHO / Blink Media – H. Abebe'
+  },
+  {
+    src: 'https://cdn.who.int/media/images/default-source/mca/2-newborn-health/kmc-practice-guide/a-father-and-his-newborn.tmb-1920v.jpg?sfvrsn=105460d1_1',
+    alt: 'Father providing skin-to-skin contact to his newborn at home',
+    title: { en: 'Family support at home', ms: 'Sokongan keluarga di rumah', zh: '家人在家中共同照护' },
+    credit: 'Fundación Canguro / Kangaroo Foundation'
+  }
+];
 function positionFigure() {
-  const lb = k => esc(L(FIG_LABELS[k]));
-  return `<div class="fig"><svg viewBox="0 0 480 330" role="img" aria-label="KMC position">
-    <rect width="480" height="330" rx="16" fill="#f0fdfa"/>
-    <path d="M90 330 C95 250 120 200 210 190 C300 200 325 250 330 330 Z" fill="#f6d5c3" stroke="#c99a83" stroke-width="2"/>
-    <circle cx="210" cy="120" r="44" fill="#f6d5c3" stroke="#c99a83" stroke-width="2"/>
-    <path d="M168 104 C175 70 245 70 252 104 C240 92 182 92 168 104Z" fill="#5b4636"/>
-    <ellipse cx="210" cy="268" rx="40" ry="52" fill="#fbe3d6" stroke="#c99a83" stroke-width="2"/>
-    <circle cx="214" cy="205" r="25" fill="#fbe3d6" stroke="#c99a83" stroke-width="2"/>
-    <path d="M190 196 C195 176 233 176 238 196 Z" fill="#7dd3c8" stroke="#0f766e" stroke-width="1.5"/>
-    <circle cx="226" cy="207" r="2" fill="#5b4636"/><path d="M228 216 q4 2 7 -1" stroke="#5b4636" fill="none"/>
-    <path d="M178 258 C168 236 180 226 194 234" stroke="#c99a83" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <path d="M242 258 C252 236 240 226 226 234" stroke="#c99a83" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <path d="M186 304 C170 300 168 286 182 282" stroke="#c99a83" stroke-width="8" fill="none" stroke-linecap="round"/>
-    <path d="M234 304 C250 300 252 286 238 282" stroke="#c99a83" stroke-width="8" fill="none" stroke-linecap="round"/>
-    <path d="M100 236 L320 236 L326 300 L94 300 Z" fill="#0f766e" opacity=".28"/>
-    <line x1="100" y1="236" x2="320" y2="236" stroke="#0f766e" stroke-width="3"/>
-    <g font-size="12" fill="#1f2937" font-family="system-ui,sans-serif">
-      <line x1="244" y1="196" x2="300" y2="160" stroke="#e76f51"/><circle cx="244" cy="196" r="3" fill="#e76f51"/>
-      <text x="302" y="150">${lb('head')}</text>
-      <line x1="232" y1="224" x2="300" y2="190" stroke="#e76f51"/><circle cx="232" cy="224" r="3" fill="#e76f51"/>
-      <text x="302" y="186">${lb('neck')}</text>
-      <line x1="120" y1="236" x2="60" y2="196" stroke="#e76f51"/><circle cx="120" cy="236" r="3" fill="#e76f51"/>
-      <text x="8" y="186">${lb('binder')}</text>
-      <line x1="182" y1="284" x2="60" y2="300" stroke="#e76f51"/><circle cx="182" cy="284" r="3" fill="#e76f51"/>
-      <text x="8" y="318">${lb('limbs')}</text>
-      <line x1="252" y1="270" x2="320" y2="318" stroke="#e76f51"/><circle cx="252" cy="270" r="3" fill="#e76f51"/>
-      <text x="472" y="324" text-anchor="end">${lb('chest')}</text>
-    </g></svg></div>`;
+  const guide = 'https://www.who.int/teams/maternal-newborn-child-adolescent-health-and-ageing/newborn-health/kangaroo-mother-care-practice-guide';
+  return `<div class="kmc-photo-grid" aria-label="Real-life KMC photographs from the WHO clinical practice guide">
+    ${KMC_PHOTOS.map(p => `<figure class="kmc-photo-card">
+      <img src="${p.src}" alt="${esc(p.alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+      <figcaption><b>${esc(L(p.title))}</b><span class="small muted">Photo: ${esc(p.credit)}</span></figcaption>
+    </figure>`).join('')}
+    <p class="small muted kmc-photo-note">Photographs are credited to their respective contributors and reproduced from the WHO 2025 KMC guide webpage. Please consult the WHO guide for the complete instructions on safe positioning. <a href="${guide}" target="_blank" rel="noopener">Open WHO guide ↗</a></p>
+  </div>`;
 }
 
 /* ---------- dialog forms ---------- */
@@ -282,7 +292,7 @@ function viewParentHome() {
   return `<div class="hero"><img src="icons/icon-192.png" alt="KMC Connect logo" style="width:84px;height:84px;border-radius:20px;float:right;margin-left:.8rem"><h1>KMC Connect</h1><p>${esc(t('appTagline'))}</p></div>
   ${status}
   ${progressCard}
-  <div class="card flat"><b>${esc(L({en:'KMC position: remember these 3 checks',ms:'Posisi KMC: ingat 3 perkara ini',zh:'袋鼠护理姿势：记住这3点'}))}</b><div class="grid g3" style="margin-top:.7rem"><div class="center"><div style="font-size:2rem">👃</div><b class="small">${esc(L({en:'Airway clear',ms:'Saluran nafas terbuka',zh:'呼吸道通畅'}))}</b></div><div class="center"><div style="font-size:2rem">🤱</div><b class="small">${esc(L({en:'Chest-to-chest',ms:'Dada ke dada',zh:'胸贴胸'}))}</b></div><div class="center"><div style="font-size:2rem">🎀</div><b class="small">${esc(L({en:'Binder secure',ms:'Pengikat kemas',zh:'背带稳固'}))}</b></div></div><a class="small" href="#/p/position">${esc(L({en:'See the illustrated positioning guide',ms:'Lihat panduan posisi bergambar',zh:'查看图解姿势指南'}))} →</a></div>
+  <div class="card flat"><b>${esc(L({en:'KMC position: remember these 3 checks',ms:'Posisi KMC: ingat 3 perkara ini',zh:'袋鼠护理姿势：记住这3点'}))}</b><div class="grid g3" style="margin-top:.7rem"><div class="center"><div style="font-size:2rem">👃</div><b class="small">${esc(L({en:'Airway clear',ms:'Saluran nafas terbuka',zh:'呼吸道通畅'}))}</b></div><div class="center"><div style="font-size:2rem">🤱</div><b class="small">${esc(L({en:'Chest-to-chest',ms:'Dada ke dada',zh:'胸贴胸'}))}</b></div><div class="center"><div style="font-size:2rem">🎀</div><b class="small">${esc(L({en:'Binder secure',ms:'Pengikat kemas',zh:'背带稳固'}))}</b></div></div><a class="small" href="#/p/position">${esc(L({en:'See real-life KMC photographs',ms:'Lihat foto sebenar posisi KMC',zh:'查看真实袋鼠式护理照片'}))} →</a></div>
   <div class="grid">
     <a class="tile teal" href="#/p/learn"><span class="em">📖</span><b>${esc(t('learn'))}</b><span>${esc(t('learnSub'))}</span></a>
     <a class="tile teal" href="#/p/position"><span class="em">🫶</span><b>${esc(t('howToHold'))}</b><span>${esc(t('howToHoldSub'))}</span></a>
@@ -844,7 +854,7 @@ function viewAbout() {
   <div class="card"><h3>Licence & disclaimers</h3><ul class="msgs small">
     <li>This app is an adaptation of WHO material and is shared under the same licence, CC BY-NC-SA 3.0 IGO, for non-commercial use. WHO does not endorse this app or any organisation, product or service.</li>
     <li>The Bahasa Melayu and Chinese translations were not created by WHO. WHO is not responsible for their content or accuracy. The original English edition is the binding and authentic edition.</li>
-    <li>Illustrations in this app are original simple drawings, not WHO illustrations.</li>
+    <li>Real-life KMC photographs are credited to the named contributors. The WHO guide licence does not automatically cover third-party photographs; confirm permissions with the respective rights holders before public redistribution. WHO does not endorse this app.</li>
     <li>${esc(t('privacy'))}</li></ul></div>`;
 }
 function notFound() { return `<div class="card center"><p>Page not found.</p><a class="btn" href="#/">Home</a></div>`; }
